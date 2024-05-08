@@ -2,7 +2,7 @@
 
 ## Project Summary
 
-This project involves building the client-side for an app called kraftFlix using React. The objective is to complement the existing server-side code (REST API and database) by creating interface views that handle data through REST API endpoints.
+This project involves building the client-side for an app called kraftFlix using React. The objective is to complement the existing server-side code (REST API and MongoDB database) by creating interface views that handle data through REST API endpoints.
 kraftFlix-Client empowers users to seamlessly access information about various movies. Through a user-friendly interface, they can browse movies, view detailed information about individual films, save favorites, and manage their profile.
 
 ### Essential Views & Features:
