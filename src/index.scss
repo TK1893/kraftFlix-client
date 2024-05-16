@@ -1,5 +1,39 @@
 $color: steelblue;
 
-.my-flix {
-  color: $color;
+body {
+  // color: black;
+  // background-color: $color;
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+}
+img {
+  width: 50vw;
+}
+h1 {
+  padding: 0 5px;
+  background-color: black;
+  color: white;
+}
+h3 {
+  font-family: 'Merriweather', serif;
+  padding: 0 5px;
+  background-color: black;
+  color: white;
+}
+div {
+  margin: 10px 0;
+}
+span {
+  padding: 0 5px;
+  margin: 0;
+  font-size: large;
+}
+button {
+  margin: 20px 0;
+  width: 70px;
+  height: 35px;
+  font-size: large;
+}
+div:hover {
+  cursor: pointer;
 }
