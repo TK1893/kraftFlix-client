@@ -1,4 +1,43 @@
-.my-flix {
-  color: #4682b4;
+body {
+  text-align: center;
+  font-family: Roboto, sans-serif;
+}
+
+img {
+  width: 50vw;
+}
+
+h1 {
+  color: #fff;
+  background-color: #000;
+  padding: 0 5px;
+}
+
+h3 {
+  color: #fff;
+  background-color: #000;
+  padding: 0 5px;
+  font-family: Merriweather, serif;
+}
+
+div {
+  margin: 10px 0;
+}
+
+span {
+  margin: 0;
+  padding: 0 5px;
+  font-size: large;
+}
+
+button {
+  width: 70px;
+  height: 35px;
+  margin: 20px 0;
+  font-size: large;
+}
+
+div:hover {
+  cursor: pointer;
 }
 /*# sourceMappingURL=index.2212206d.css.map */
