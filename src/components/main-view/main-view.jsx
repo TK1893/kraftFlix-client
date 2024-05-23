@@ -4,16 +4,22 @@ import { MovieView } from '../movie-view/movie-view';
 
 export const MainView = () => {
   const [movies, setMovies] = useState([]);
-
   const [selectedMovie, setSelectedMovie] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetch('https://kraftflix-api-d019e99d109c.herokuapp.com/movies')
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
       .then((data) => {
         console.log(data);
         const moviesFromApi = data.map((movie) => {
           return {
+            Image: movie.Imageurl,
             ID: movie._id,
             Title: movie.Title,
             Description: movie.Description,
@@ -21,13 +27,20 @@ export const MainView = () => {
             Director: movie.Director,
             Genre: movie.Genre,
             Actors: movie.Actors,
-            Image: movie.Imageurl,
+            // Image: movie.Imageurl,
           };
         });
-
         setMovies(moviesFromApi);
+      })
+      .catch((error) => {
+        console.error('There was a problem with the fetch operation:', error);
+        setError(error.message);
       });
   }, []);
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   if (selectedMovie) {
     return (
@@ -46,7 +59,7 @@ export const MainView = () => {
     <div>
       {movies.map((movie) => (
         <MovieCard
-          key={movie.id}
+          key={movie.ID}
           movie={movie}
           onMovieClick={(newSelectedMovie) => {
             setSelectedMovie(newSelectedMovie);
