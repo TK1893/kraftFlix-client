@@ -19,7 +19,7 @@ export const MainView = () => {
         console.log(data);
         const moviesFromApi = data.map((movie) => {
           return {
-            Image: movie.Imageurl,
+            Imageurl: movie.Imageurl,
             ID: movie._id,
             Title: movie.Title,
             Description: movie.Description,
@@ -27,7 +27,7 @@ export const MainView = () => {
             Director: movie.Director,
             Genre: movie.Genre,
             Actors: movie.Actors,
-            // Image: movie.Imageurl,
+            Year: movie.Year,
           };
         });
         setMovies(moviesFromApi);
