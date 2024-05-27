@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { LoginView } from '../login-view/login-view';
-import { SignupView } from '../signup-view/signup-view';
+import { SignupView } from '../signup-view/singnup-view';
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem('user'));
@@ -65,7 +65,9 @@ export const MainView = () => {
   if (error) {
     return (
       <>
-        <button onClick={handleLogout}>Logout</button>
+        <button className="scroll-button" onClick={handleLogout}>
+          Logout
+        </button>
         <div>Error: {error}</div>
       </>
     );
@@ -74,10 +76,10 @@ export const MainView = () => {
   if (selectedMovie) {
     return (
       <>
-        <button onClick={handleLogout}>Logout</button>
         <MovieView
           movie={selectedMovie}
           onBackClick={() => setSelectedMovie(null)}
+          onLogoutClick={handleLogout}
         />
       </>
     );
@@ -86,7 +88,9 @@ export const MainView = () => {
   if (movies.length === 0) {
     return (
       <>
-        <button onClick={handleLogout}>Logout</button>
+        <button className="scroll-button" onClick={handleLogout}>
+          Logout
+        </button>
         <div>The list is empty!</div>
       </>
     );
@@ -94,7 +98,6 @@ export const MainView = () => {
 
   return (
     <>
-      <button onClick={handleLogout}>Logout</button>
       {movies.map((movie) => (
         <MovieCard
           key={movie.ID}
@@ -104,6 +107,9 @@ export const MainView = () => {
           }}
         />
       ))}
+      <button className="scroll-button" onClick={handleLogout}>
+        Logout
+      </button>
     </>
   );
 };

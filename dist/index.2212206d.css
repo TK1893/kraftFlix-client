@@ -63,7 +63,6 @@ p {
 }
 
 .scroll-button {
-  z-index: 999;
   color: #535cdf;
   cursor: pointer;
   background-color: #faebd7e6;
@@ -71,15 +70,19 @@ p {
   border-radius: 5px;
   padding: 10px 20px;
   transition: background-color .3s, color .3s, border .3s;
-  position: sticky;
-  bottom: 20px;
-  right: 20px;
 }
 
 .scroll-button:hover {
   color: #faebd7;
   background-color: #535cdf;
   border: 2px solid #535cdf;
+}
+
+.button-container {
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+  display: flex;
 }
 
 .movie-title {
