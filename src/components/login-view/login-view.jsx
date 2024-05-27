@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import '../../authView.scss'; // CSS file for LoginView and SignupView
 
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState('');
@@ -9,8 +10,8 @@ export const LoginView = ({ onLoggedIn }) => {
     event.preventDefault();
 
     const data = {
-      Username: username, // Use 'Username' to match the signup key
-      Password: password, // Use 'Password' to match the signup key
+      Username: username,
+      Password: password,
     };
 
     fetch('https://kraftflix-api-d019e99d109c.herokuapp.com/login', {
@@ -37,28 +38,35 @@ export const LoginView = ({ onLoggedIn }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Username:
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-          minLength="3"
-        />
-      </label>
-      <label>
-        Password:
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </label>
-      <button type="submit">Submit</button>
-    </form>
+    <div className="auth-container">
+      <h2 className="auth-heading">Login</h2>
+      <form className="auth-form" onSubmit={handleSubmit}>
+        <label className="auth-label">
+          Username:
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+            minLength="3"
+            className="auth-input"
+          />
+        </label>
+        <label className="auth-label">
+          Password:
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            className="auth-input"
+          />
+        </label>
+        <button type="submit" className="auth-button">
+          Submit
+        </button>
+      </form>
+    </div>
   );
 };
 

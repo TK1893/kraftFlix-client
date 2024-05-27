@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../../authView.scss'; // Import CSS file for LoginView and SignupView
 
 export const SignupView = () => {
   const [username, setUsername] = useState('');
@@ -10,8 +11,8 @@ export const SignupView = () => {
     event.preventDefault();
 
     const data = {
-      Username: username, // Use 'Username' to match the login key
-      Password: password, // Use 'Password' to match the login key
+      Username: username,
+      Password: password,
       Email: email,
       Birthday: birthday,
     };
@@ -33,45 +34,54 @@ export const SignupView = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Username:
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-          minLength="3"
-        />
-      </label>
-      <label>
-        Password:
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Email:
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Birthday:
-        <input
-          type="date"
-          value={birthday}
-          onChange={(e) => setBirthday(e.target.value)}
-          required
-        />
-      </label>
-      <button type="submit">Submit</button>
-    </form>
+    <div className="auth-container">
+      <h2 className="auth-heading">Signup</h2>
+      <form className="auth-form" onSubmit={handleSubmit}>
+        <label className="auth-label">
+          Username:
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+            minLength="3"
+            className="auth-input"
+          />
+        </label>
+        <label className="auth-label">
+          Password:
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            className="auth-input"
+          />
+        </label>
+        <label className="auth-label">
+          Email:
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            className="auth-input"
+          />
+        </label>
+        <label className="auth-label">
+          Birthday:
+          <input
+            type="date"
+            value={birthday}
+            onChange={(e) => setBirthday(e.target.value)}
+            required
+            className="auth-input"
+          />
+        </label>
+        <button type="submit" className="auth-button">
+          Submit
+        </button>
+      </form>
+    </div>
   );
 };
