@@ -73,9 +73,9 @@ export const MainView = () => {
       });
   }, [token]);
 
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
+  // if (error) {
+  //   return <div>Error: {error}</div>;
+  // }
 
   if (!user) {
     return (

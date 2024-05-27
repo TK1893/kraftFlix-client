@@ -27444,23 +27444,16 @@ const MainView = ()=>{
                 };
             });
             setMovies(moviesFromApi);
-        }).catch((error1)=>{
-            console.error("There was a problem with the fetch operation:", error1);
-            setError(error1.message);
+        }).catch((error)=>{
+            console.error("There was a problem with the fetch operation:", error);
+            setError(error.message);
         });
     }, [
         token
     ]);
-    if (error) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        children: [
-            "Error: ",
-            error
-        ]
-    }, void 0, true, {
-        fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 77,
-        columnNumber: 12
-    }, undefined);
+    // if (error) {
+    //   return <div>Error: {error}</div>;
+    // }
     if (!user) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _loginView.LoginView), {
