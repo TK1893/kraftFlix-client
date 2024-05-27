@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { LoginView } from '../login-view/login-view';
@@ -11,37 +11,8 @@ export const MainView = () => {
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
+  const [error, setError] = useState(null);
 
-  if (!user) {
-    return (
-      <>
-        <LoginView
-          onLoggedIn={(user, token) => {
-            setUser(user);
-            setToken(token);
-          }}
-        />
-        or
-        <SignupView />
-      </>
-    );
-  }
-
-  // **** Anleitung Neu ********************************
-  // useEffect(() => {
-  //   if (!token) {
-  //     return;
-  //   }
-  //   fetch('https://kraftflix-api-d019e99d109c.herokuapp.com/movies', {
-  //     headers: { Authorization: `Bearer ${token}` },
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       console.log(data);
-  //     });
-  // }, [token]);
-
-  // **** Neu Master ********************************
   useEffect(() => {
     if (!token) {
       return;
@@ -51,20 +22,17 @@ export const MainView = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
-        const moviesFromApi = data.map((movie) => {
-          return {
-            Imageurl: movie.Imageurl,
-            ID: movie._id,
-            Title: movie.Title,
-            Description: movie.Description,
-            Featured: movie.Featured,
-            Director: movie.Director,
-            Genre: movie.Genre,
-            Actors: movie.Actors,
-            Year: movie.Year,
-          };
-        });
+        const moviesFromApi = data.map((movie) => ({
+          Imageurl: movie.Imageurl,
+          ID: movie._id,
+          Title: movie.Title,
+          Description: movie.Description,
+          Featured: movie.Featured,
+          Director: movie.Director,
+          Genre: movie.Genre,
+          Actors: movie.Actors,
+          Year: movie.Year,
+        }));
         setMovies(moviesFromApi);
       })
       .catch((error) => {
@@ -73,9 +41,11 @@ export const MainView = () => {
       });
   }, [token]);
 
-  // if (error) {
-  //   return <div>Error: {error}</div>;
-  // }
+  const handleLogout = () => {
+    setUser(null);
+    setToken(null);
+    localStorage.clear();
+  };
 
   if (!user) {
     return (
@@ -92,22 +62,24 @@ export const MainView = () => {
     );
   }
 
+  if (error) {
+    return (
+      <>
+        <button className="scroll-button" onClick={handleLogout}>
+          Logout
+        </button>
+        <div>Error: {error}</div>
+      </>
+    );
+  }
+
   if (selectedMovie) {
     return (
       <>
-        <button
-          onClick={() => {
-            setUser(null);
-            setToken(null);
-            localStorage.clear();
-          }}
-        >
-          Logout
-        </button>
-        ;
         <MovieView
           movie={selectedMovie}
           onBackClick={() => setSelectedMovie(null)}
+          onLogoutClick={handleLogout}
         />
       </>
     );
@@ -116,32 +88,16 @@ export const MainView = () => {
   if (movies.length === 0) {
     return (
       <>
-        <button
-          onClick={() => {
-            setUser(null);
-            setToken(null);
-            localStorage.clear();
-          }}
-        >
+        <button className="scroll-button" onClick={handleLogout}>
           Logout
         </button>
-        ;<div>The list is empty!</div>;
+        <div>The list is empty!</div>
       </>
     );
   }
 
   return (
     <>
-      <button
-        onClick={() => {
-          setUser(null);
-          setToken(null);
-          localStorage.clear();
-        }}
-      >
-        Logout
-      </button>
-      ;
       {movies.map((movie) => (
         <MovieCard
           key={movie.ID}
@@ -151,6 +107,9 @@ export const MainView = () => {
           }}
         />
       ))}
+      <button className="scroll-button" onClick={handleLogout}>
+        Logout
+      </button>
     </>
   );
 };
