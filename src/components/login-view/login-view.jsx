@@ -1,23 +1,18 @@
 import React, { useState } from 'react';
-import { useState } from 'react';
 import PropTypes from 'prop-types';
 
 export const LoginView = ({ onLoggedIn }) => {
-  // Zustandshooks für Benutzername, Passwort, Email
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // Datenobjekt mit Benutzername und Passwort
     const data = {
-      access: username,
-      secret: password,
+      Username: username, // Use 'Username' to match the signup key
+      Password: password, // Use 'Password' to match the signup key
     };
 
-    // Anfrage an den Server senden
     fetch('https://kraftflix-api-d019e99d109c.herokuapp.com/login', {
       method: 'POST',
       headers: {
@@ -41,22 +36,6 @@ export const LoginView = ({ onLoggedIn }) => {
       });
   };
 
-  // TODO: wieder entkommentieren
-  // // Handler für Änderungen im Benutzernamenfeld
-  // const handleUsernameChange = (event) => {
-  //   setUsername(event.target.value);
-  // };
-
-  // // Handler für Änderungen im Passwortfeld
-  // const handlePasswordChange = (event) => {
-  //   setPassword(event.target.value);
-  // };
-
-  // // Handler für Änderungen im Passwortfeld
-  // const handleEmailChange = (event) => {
-  //   setEmail(event.target.value);
-  // };
-
   return (
     <form onSubmit={handleSubmit}>
       <label>
@@ -66,10 +45,9 @@ export const LoginView = ({ onLoggedIn }) => {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
-          minlength="2"
+          minLength="3"
         />
       </label>
-
       <label>
         Password:
         <input
@@ -79,20 +57,11 @@ export const LoginView = ({ onLoggedIn }) => {
           required
         />
       </label>
-      {/* <label>
-        Email:
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-      </label> */}
       <button type="submit">Submit</button>
     </form>
   );
 };
-// TODO: benötigt? Code von marlinejohn
-// LoginView.propTypes = {
-//   onLoggedIn: PropTypes.func.isRequired,
-// };
+
+LoginView.propTypes = {
+  onLoggedIn: PropTypes.func.isRequired,
+};

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 export const SignupView = () => {
   const [username, setUsername] = useState('');
@@ -10,8 +10,8 @@ export const SignupView = () => {
     event.preventDefault();
 
     const data = {
-      Username: username,
-      Password: password,
+      Username: username, // Use 'Username' to match the login key
+      Password: password, // Use 'Password' to match the login key
       Email: email,
       Birthday: birthday,
     };
@@ -31,6 +31,7 @@ export const SignupView = () => {
       }
     });
   };
+
   return (
     <form onSubmit={handleSubmit}>
       <label>
