@@ -1,39 +1,83 @@
-$color: steelblue;
-
 body {
-  // color: black;
-  // background-color: $color;
   font-family: 'Roboto', sans-serif;
   text-align: center;
+  background-color: antiquewhite;
 }
 img {
   width: 20vw;
+  margin-bottom: 5px;
 }
 h1 {
-  padding: 0 5px;
   background-color: black;
-  color: white;
+  color: antiquewhite;
+  font-size: 3rem;
+}
+h2 {
+  font-family: 'Merriweather', serif;
+  margin-bottom: 0;
+  font-size: 2rem;
+  color: rgb(83, 92, 223);
 }
 h3 {
   font-family: 'Merriweather', serif;
-  padding: 0 5px;
   background-color: black;
-  color: white;
+  color: antiquewhite;
+}
+h4 {
+  font-family: 'Merriweather', serif;
+  margin-bottom: 0.5rem;
 }
 div {
   margin: 10px 0;
 }
-span {
-  padding: 0 5px;
-  margin: 0;
-  font-size: large;
+p {
+  font-size: 1rem;
+  padding: 5px 20px;
 }
-button {
-  margin: 20px 0;
-  width: 70px;
-  height: 35px;
-  font-size: large;
+.pBio {
+  padding: 5px 10vw;
+  margin-top: 0;
 }
-div:hover {
+.pYear {
+  margin-top: 0;
+  font-style: italic;
+  color: rgb(83, 92, 223);
+}
+.pPlot {
+  padding: 5px 10vw;
+  margin-top: 0;
+}
+.movie-view-container {
+  position: relative;
+}
+
+.scroll-button {
+  position: sticky;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  background-color: rgba(250, 235, 215, 0.9);
+  color: rgb(83, 92, 223);
+  padding: 10px 20px;
+  border: 2px solid rgb(83, 92, 223);
+  border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, border 0.3s; /* Übergangseffekte für Hintergrund-, Textfarbe und Rand */
+}
+
+/* Stiländerung beim Hover */
+.scroll-button:hover {
+  background-color: rgb(83, 92, 223);
+  color: antiquewhite;
+  border: 2px solid rgb(83, 92, 223);
+}
+
+.movie-title {
+  cursor: pointer;
+  transition: font-size 0.3s ease-in-out;
+}
+
+.movie-card:hover .movie-title {
+  color: rgb(83, 92, 223);
+  font-size: 1.2em;
 }
