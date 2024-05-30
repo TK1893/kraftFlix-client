@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
-import { Form, Button, Card } from 'react-bootstrap';
+import Form from 'react-bootstrap/Form';
 
 import '../../index.scss';
 
@@ -41,38 +41,34 @@ export const LoginView = ({ onLoggedIn }) => {
   };
 
   return (
-    <Card>
-      <Card.Body>
-        <Card.Title>Login</Card.Title>
-        <Form onSubmit={handleSubmit}>
-          {/* USERNAME */}
-          <Form.Group controlId="formUsername">
-            <Form.Label>Username:</Form.Label>
-            <Form.Control
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-              minLength="3"
-            />
-          </Form.Group>
-          {/* PASSWORD */}
-          <Form.Group controlId="formPassword">
-            <Form.Label>Password:</Form.Label>
-            <Form.Control
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </Form.Group>
-          {/* BUTTON */}
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
-        </Form>
-      </Card.Body>
-    </Card>
+    <Form onSubmit={handleSubmit}>
+      <h2>Login</h2>
+      {/* USERNAME */}
+      <Form.Group controlId="formUsername">
+        <Form.Label>Username:</Form.Label>
+        <Form.Control
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+          minLength="3"
+        />
+      </Form.Group>
+      {/* PASSWORD */}
+      <Form.Group controlId="formPassword">
+        <Form.Label>Password:</Form.Label>
+        <Form.Control
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+      </Form.Group>
+      {/* BUTTON */}
+      <Button variant="primary" type="submit">
+        Submit
+      </Button>
+    </Form>
   );
 };
 

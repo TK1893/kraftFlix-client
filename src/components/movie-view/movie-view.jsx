@@ -1,71 +1,46 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Button from 'react-bootstrap/Button';
 import '../..//index.scss'; // Importiere deine CSS-Datei
 
 export const MovieView = ({ movie, onBackClick, onLogoutClick }) => {
   return (
-    <div className="movie-view-container">
+    <div>
       <div>
-        <span>
-          <img src={movie.Imageurl} />
-        </span>
+        <img className="w-100" src={movie.Imageurl} />
       </div>
-      <div>
-        <span>
-          <h2>{movie.Title}</h2>
-          <p className="pYear">( {movie.Year} )</p>
-        </span>
-      </div>
-      <div>
-        <span>
-          <h3>Plot</h3>
-        </span>
-        <span>
-          <p className="pPlot">{movie.Description}</p>
-        </span>
-      </div>
-      <div>
-        <span>
-          <h3>Director</h3>
-        </span>
-        <span>
-          <p>{movie.Director.Name}</p>
-          <h4>Biography</h4>
-          <p className="pBio">{movie.Director.Bio}</p>
-        </span>
-      </div>
-      <div>
-        <span>
-          <h3>Genre</h3>
-        </span>
-        <span>
-          <p>{movie.Genre.Name}</p>
-        </span>
-      </div>
-      <div>
-        <span>
-          <h3>Actors</h3>
-        </span>
-        <span>
-          <p>{movie.Actors.join(', ')}</p>
-        </span>
-      </div>
-      <div>
-        <span>
-          <h3>Featured</h3>
-        </span>
-        <span>
-          <p>{movie.Featured ? 'Yes' : 'No'}</p>
-        </span>
-      </div>
-      <div className="button-container">
-        <button className="scroll-button" onClick={onBackClick}>
-          Back
-        </button>
-        <button className="scroll-button" onClick={onLogoutClick}>
-          Logout
-        </button>
-      </div>
+      <span>
+        <h2>{movie.Title}</h2>
+        <p className="pYear">( {movie.Year} )</p>
+      </span>
+      <span>
+        <h3>Plot</h3>
+        <p className="pPlot">{movie.Description}</p>
+      </span>
+      <span>
+        <h3>Director</h3>
+        <p>{movie.Director.Name}</p>
+        <h4>Biography</h4>
+        <p className="pBio">{movie.Director.Bio}</p>
+      </span>
+      <span>
+        <h3>Genre</h3>
+        <p>{movie.Genre.Name}</p>
+      </span>
+      <span>
+        <h3>Actors</h3>
+        <p>{movie.Actors.join(', ')}</p>
+      </span>
+      <span>
+        <h3>Featured</h3>
+        <p>{movie.Featured ? 'Yes' : 'No'}</p>
+      </span>
+      <Button variant="primary" onClick={onBackClick}>
+        Back
+      </Button>
+      <Button variant="primary" onClick={onLogoutClick}>
+        Logout
+      </Button>
     </div>
   );
 };
