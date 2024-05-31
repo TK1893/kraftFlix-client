@@ -1,8 +1,8 @@
-// import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import '../..//index.scss'; // Importiere deine CSS-Datei
 
-export const MovieView = ({ movie, onBackClick }) => {
+export const MovieView = ({ movie, onBackClick, onLogoutClick }) => {
   return (
     <div className="movie-view-container">
       <div>
@@ -58,9 +58,14 @@ export const MovieView = ({ movie, onBackClick }) => {
           <p>{movie.Featured ? 'Yes' : 'No'}</p>
         </span>
       </div>
-      <button className="scroll-button" onClick={onBackClick}>
-        Back
-      </button>
+      <div className="button-container">
+        <button className="scroll-button" onClick={onBackClick}>
+          Back
+        </button>
+        <button className="scroll-button" onClick={onLogoutClick}>
+          Logout
+        </button>
+      </div>
     </div>
   );
 };
@@ -84,4 +89,5 @@ MovieView.propTypes = {
     Actors: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
   onBackClick: PropTypes.func.isRequired,
+  onLogoutClick: PropTypes.func.isRequired,
 };

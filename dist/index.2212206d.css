@@ -63,7 +63,6 @@ p {
 }
 
 .scroll-button {
-  z-index: 999;
   color: #535cdf;
   cursor: pointer;
   background-color: #faebd7e6;
@@ -71,15 +70,19 @@ p {
   border-radius: 5px;
   padding: 10px 20px;
   transition: background-color .3s, color .3s, border .3s;
-  position: sticky;
-  bottom: 20px;
-  right: 20px;
 }
 
 .scroll-button:hover {
   color: #faebd7;
   background-color: #535cdf;
   border: 2px solid #535cdf;
+}
+
+.button-container {
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+  display: flex;
 }
 
 .movie-title {
@@ -90,5 +93,64 @@ p {
 .movie-card:hover .movie-title {
   color: #535cdf;
   font-size: 1.2em;
+}
+
+.auth-container {
+  background-color: #000;
+  border-radius: 5px;
+  flex-direction: column;
+  align-items: center;
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  display: flex;
+  box-shadow: 0 0 10px #00000080;
+}
+
+.auth-heading {
+  color: #faebd7;
+  margin-bottom: 20px;
+  font-size: 1.5em;
+}
+
+.auth-form {
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  display: flex;
+}
+
+.auth-label {
+  text-align: left;
+  color: #fff;
+  width: 100%;
+  margin: 10px 0;
+  font-family: Roboto, sans-serif;
+}
+
+.auth-input {
+  color: #000;
+  background-color: #faebd7;
+  border: none;
+  border-radius: 5px;
+  width: calc(100% - 22px);
+  margin: 5px 0;
+  padding: 10px;
+}
+
+.auth-button {
+  color: #000;
+  cursor: pointer;
+  background-color: #faebd7;
+  border: none;
+  border-radius: 5px;
+  margin-top: 20px;
+  padding: 12px 20px;
+  transition: background-color .3s, padding .3s;
+}
+
+.auth-button:hover {
+  background-color: #535cdf;
+  padding: 14px 22px;
 }
 /*# sourceMappingURL=index.2212206d.css.map */

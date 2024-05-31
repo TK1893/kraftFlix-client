@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import '../..//index.scss'; // Importiere der CSS-Datei
+import '../..//index.scss';
 
 export const MovieCard = ({ movie, onMovieClick }) => {
   return (

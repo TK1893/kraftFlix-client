@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import '../../authView.scss'; // Import CSS file for LoginView and SignupView
+import PropTypes from 'prop-types';
+import '../../authView.scss'; // CSS file for LoginView and SignupView
 
-export const SignupView = () => {
+export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
-  const [birthday, setBirthday] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -13,29 +12,34 @@ export const SignupView = () => {
     const data = {
       Username: username,
       Password: password,
-      Email: email,
-      Birthday: birthday,
     };
 
-    fetch('https://kraftflix-api-d019e99d109c.herokuapp.com/users', {
+    fetch('https://kraftflix-api-d019e99d109c.herokuapp.com/login', {
       method: 'POST',
-      body: JSON.stringify(data),
       headers: {
         'Content-Type': 'application/json',
       },
-    }).then((response) => {
-      if (response.ok) {
-        alert('Signup successful');
-        window.location.reload();
-      } else {
-        alert('Signup failed');
-      }
-    });
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Login response: ', data);
+        if (data.user) {
+          localStorage.setItem('user', JSON.stringify(data.user));
+          localStorage.setItem('token', data.token);
+          onLoggedIn(data.user, data.token);
+        } else {
+          alert('No such user');
+        }
+      })
+      .catch((e) => {
+        alert('Something went wrong');
+      });
   };
 
   return (
     <div className="auth-container">
-      <h2 className="auth-heading">Signup</h2>
+      <h2 className="auth-heading">Login</h2>
       <form className="auth-form" onSubmit={handleSubmit}>
         <label className="auth-label">
           Username:
@@ -58,30 +62,14 @@ export const SignupView = () => {
             className="auth-input"
           />
         </label>
-        <label className="auth-label">
-          Email:
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            className="auth-input"
-          />
-        </label>
-        <label className="auth-label">
-          Birthday:
-          <input
-            type="date"
-            value={birthday}
-            onChange={(e) => setBirthday(e.target.value)}
-            required
-            className="auth-input"
-          />
-        </label>
         <button type="submit" className="auth-button">
           Submit
         </button>
       </form>
     </div>
   );
+};
+
+LoginView.propTypes = {
+  onLoggedIn: PropTypes.func.isRequired,
 };

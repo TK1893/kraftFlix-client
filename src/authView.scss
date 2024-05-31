@@ -1,0 +1,60 @@
+//CSS file for LoginView and SignupView
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: black;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  margin: 20px auto;
+  max-width: 400px;
+}
+
+.auth-heading {
+  font-size: 1.5em;
+  color: antiquewhite;
+  margin-bottom: 20px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.auth-label {
+  margin: 10px 0;
+  font-family: 'Roboto', sans-serif;
+  width: 100%;
+  text-align: left;
+  color: white;
+}
+
+.auth-input {
+  padding: 10px;
+  margin: 5px 0;
+  border: none;
+  border-radius: 5px;
+  width: calc(100% - 22px);
+  background-color: antiquewhite;
+  color: black;
+}
+
+.auth-button {
+  padding: 12px 20px;
+  background-color: rgba(83, 92, 223, 0.9);
+  background-color: antiquewhite;
+  color: #000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, padding 0.3s;
+  margin-top: 20px;
+}
+
+.auth-button:hover {
+  background-color: rgba(83, 92, 223, 1);
+  padding: 14px 22px;
+}
