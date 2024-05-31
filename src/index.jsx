@@ -7,7 +7,7 @@ import './index.scss';
 // Main component (will eventually use all the others)
 const App = () => {
   return (
-    <Container>
+    <Container fluid>
       <MainView />
     </Container>
     // <Card className="text-center">

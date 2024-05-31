@@ -49,28 +49,16 @@ export const MainView = () => {
     localStorage.clear();
   };
 
-  const handleBrandClick = () => {
-    setSelectedMovie(null);
-  };
-
   return (
     <Container fluid>
-      <Navbar bg="black" className="mb-5 mt-1">
+      <Navbar bg="black" className="mb-3">
         <Container>
-          <Navbar.Brand
-            className="kraftflix-title"
-            href="#"
-            onClick={handleBrandClick}
-          >
+          <Navbar.Brand className="kraftflix-title" href="#">
             <h1>kraftFlix</h1>
           </Navbar.Brand>
           {user && (
             <Nav className="ml-auto">
-              <Button
-                className="ciao-button"
-                variant="outline-cia"
-                onClick={handleLogout}
-              >
+              <Button variant="outline-secondary" onClick={handleLogout}>
                 Logout
               </Button>
             </Nav>
@@ -126,7 +114,7 @@ export const MainView = () => {
         </Row>
       </Container>
 
-      <Navbar bg="black" variant="dark" className="mt-3 mb-1">
+      <Navbar bg="black" variant="dark" className="mt-auto">
         <Container className="justify-content-center">
           <Navbar.Text className="kraftflix-footer">
             &copy; 2024 kraftFlix

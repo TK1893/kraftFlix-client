@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Button from 'react-bootstrap/Button';
 import { Form, Button, Card } from 'react-bootstrap';
 
 import '../../index.scss';
@@ -41,9 +40,9 @@ export const LoginView = ({ onLoggedIn }) => {
   };
 
   return (
-    <Card>
+    <Card className="my-3 kLogin">
       <Card.Body>
-        <Card.Title>Login</Card.Title>
+        <Card.Title className="kAuth-title">Login</Card.Title>
         <Form onSubmit={handleSubmit}>
           {/* USERNAME */}
           <Form.Group controlId="formUsername">
@@ -67,7 +66,12 @@ export const LoginView = ({ onLoggedIn }) => {
             />
           </Form.Group>
           {/* BUTTON */}
-          <Button variant="primary" type="submit">
+          <Button
+            className="mt-3 custom-button"
+            variant="outline-custom"
+            type="submit"
+            size="sm"
+          >
             Submit
           </Button>
         </Form>
