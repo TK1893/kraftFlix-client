@@ -10,15 +10,6 @@ const App = () => {
     <Container fluid>
       <MainView />
     </Container>
-    // <Card className="text-center">
-    //   <Card.Header>KRAFTFLIX</Card.Header>
-    //   <Card.Body>
-    //     <Container>
-    //       <MainView />
-    //     </Container>
-    //   </Card.Body>
-    //   <Card.Footer className="text-muted">2 days ago</Card.Footer>
-    // </Card>
   );
 };
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button, Card } from 'react-bootstrap';
-import '../../index.scss'; // Import CSS file for LoginView and SignupView
+import '../../index.scss';
 
 export const SignupView = () => {
   const [username, setUsername] = useState('');
