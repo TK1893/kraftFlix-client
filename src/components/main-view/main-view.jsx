@@ -111,7 +111,13 @@ export const MainView = () => {
           ) : (
             <>
               {movies.map((movie) => (
-                <Col className="mb-5" key={movie.ID} md={3}>
+                <Col
+                  className="mb-5"
+                  key={movie.ID}
+                  sm={6} //  ≥576px
+                  md={4} //  ≥768px
+                  lg={3} //  ≥992px
+                >
                   <MovieCard
                     movie={movie}
                     onMovieClick={(newSelectedMovie) => {
