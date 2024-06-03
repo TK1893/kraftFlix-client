@@ -1,96 +1,105 @@
-body {
-  font-family: 'Roboto', sans-serif;
-  text-align: center;
-  background-color: antiquewhite;
+$primary: #000;
+$secondary: antiquewhite;
+$third: rgb(83, 92, 223);
+$body-bg: antiquewhite;
+$pri-font: 'Abril Fatface', serif;
+$sec-font: 'Poppins', sans-serif;
+@import '~bootstrap/scss/bootstrap.scss';
+
+.kraftflix-title h1 {
+  color: $secondary;
+  font-family: $pri-font;
+  font-size: 4rem;
 }
 
-img {
-  width: 20vw;
-  margin-bottom: 5px;
+.kraftflix-footer {
+  color: $secondary;
+  font-family: $pri-font;
 }
 
-h1 {
-  background-color: black;
-  color: antiquewhite;
+// movieCard
+.karteS {
+  color: $primary;
+}
+.karteS-title {
+  font-family: $pri-font;
+  font-size: 1rem;
+}
+.karteS-text {
+  font-family: $sec-font;
+  font-size: 0.5rem;
+}
+
+// MovieView
+.karteL-wrapper {
+  padding-left: 5px;
+  margin-bottom: 30px;
+  background-color: $primary;
+}
+.karteL-film {
+  // color: $primary;
+  color: $secondary;
+  font-family: $pri-font;
   font-size: 3rem;
 }
-
-h2 {
-  font-family: 'Merriweather', serif;
-  margin-bottom: 0;
+.karteL-jahr {
+  // color: $primary;
+  color: $secondary;
+  font-family: $pri-font;
+  font-size: 1.2rem;
+}
+.karteL-title {
+  color: $primary;
+  font-family: $pri-font;
   font-size: 2rem;
-  color: rgb(83, 92, 223);
+}
+.karteL-text {
+  font-family: $sec-font;
+  color: $primary;
 }
 
-h3 {
-  font-family: 'Merriweather', serif;
-  background-color: black;
-  color: antiquewhite;
+h6 {
+  color: $primary;
+  font-family: $pri-font;
+  font-size: 1.5rem;
 }
 
-h4 {
-  font-family: 'Merriweather', serif;
-  margin-bottom: 0.5rem;
+// LoginView & SignupView
+.kAuth-title {
+  color: $primary;
+  font-family: $pri-font;
+  font-size: 2rem;
+}
+.form-label {
+  color: $primary;
+  font-family: $sec-font;
 }
 
-div {
-  margin: 10px 0;
+// Buttons
+.custom-button {
+  font-family: $pri-font;
+  // font-weight: 400;
+  color: $primary;
+  border-color: $primary;
+  border-width: 2px;
+
+  &:hover {
+    background-color: $primary;
+    color: $secondary;
+    border-color: $primary;
+  }
 }
 
-p {
-  font-size: 1rem;
-  padding: 5px 20px;
-}
+.ciao-button {
+  font-family: $pri-font;
+  // font-weight: 400;
+  color: $secondary;
+  border-color: $secondary;
+  border-width: 1px;
 
-.pBio {
-  padding: 5px 10vw;
-  margin-top: 0;
-}
-
-.pYear {
-  margin-top: 0;
-  font-style: italic;
-  color: rgb(83, 92, 223);
-}
-
-.pPlot {
-  padding: 5px 10vw;
-  margin-top: 0;
-}
-
-.movie-view-container {
-  position: relative;
-}
-
-.scroll-button {
-  background-color: rgba(250, 235, 215, 0.9);
-  color: rgb(83, 92, 223);
-  padding: 10px 20px;
-  border: 2px solid rgb(83, 92, 223);
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s, border 0.3s;
-}
-
-.scroll-button:hover {
-  background-color: rgb(83, 92, 223);
-  color: antiquewhite;
-  border: 2px solid rgb(83, 92, 223);
-}
-
-.button-container {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin: 20px 0;
-}
-
-.movie-title {
-  cursor: pointer;
-  transition: font-size 0.3s ease-in-out;
-}
-
-.movie-card:hover .movie-title {
-  color: rgb(83, 92, 223);
-  font-size: 1.2em;
+  &:hover {
+    background-color: $secondary;
+    color: $primary;
+    border-color: $secondary;
+  }
 }

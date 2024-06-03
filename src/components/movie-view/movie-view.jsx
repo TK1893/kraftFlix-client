@@ -1,72 +1,44 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../..//index.scss'; // Importiere deine CSS-Datei
+import { Button, Card } from 'react-bootstrap';
+import '../../index.scss';
 
 export const MovieView = ({ movie, onBackClick, onLogoutClick }) => {
   return (
-    <div className="movie-view-container">
-      <div>
-        <span>
-          <img src={movie.Imageurl} />
-        </span>
-      </div>
-      <div>
-        <span>
-          <h2>{movie.Title}</h2>
-          <p className="pYear">( {movie.Year} )</p>
-        </span>
-      </div>
-      <div>
-        <span>
-          <h3>Plot</h3>
-        </span>
-        <span>
-          <p className="pPlot">{movie.Description}</p>
-        </span>
-      </div>
-      <div>
-        <span>
-          <h3>Director</h3>
-        </span>
-        <span>
-          <p>{movie.Director.Name}</p>
-          <h4>Biography</h4>
-          <p className="pBio">{movie.Director.Bio}</p>
-        </span>
-      </div>
-      <div>
-        <span>
-          <h3>Genre</h3>
-        </span>
-        <span>
-          <p>{movie.Genre.Name}</p>
-        </span>
-      </div>
-      <div>
-        <span>
-          <h3>Actors</h3>
-        </span>
-        <span>
-          <p>{movie.Actors.join(', ')}</p>
-        </span>
-      </div>
-      <div>
-        <span>
-          <h3>Featured</h3>
-        </span>
-        <span>
-          <p>{movie.Featured ? 'Yes' : 'No'}</p>
-        </span>
-      </div>
-      <div className="button-container">
-        <button className="scroll-button" onClick={onBackClick}>
+    <Card>
+      <Card.Img className="w-80" variant="top" src={movie.Imageurl} />
+      <Card.Body>
+        <div className="karteL-wrapper">
+          <Card.Title className="karteL-film">{movie.Title}</Card.Title>
+          <Card.Text className="karteL-jahr">( {movie.Year} )</Card.Text>
+        </div>
+        <Card.Title className="karteL-title">Plot</Card.Title>
+        <Card.Text className="karteL-text">{movie.Description}</Card.Text>
+        <Card.Title className="karteL-title">Director</Card.Title>
+        <Card.Text className="karteL-text">{movie.Director.Name}</Card.Text>
+        <Card.Text>
+          <h6>Biography</h6>
+        </Card.Text>
+        <Card.Text className="karteL-text">{movie.Director.Bio}</Card.Text>
+        <Card.Title className="karteL-title">Genre</Card.Title>
+        <Card.Text className="karteL-text">{movie.Genre.Name}</Card.Text>
+        <Card.Title className="karteL-title">Actors</Card.Title>
+        <Card.Text className="karteL-text">{movie.Actors.join(', ')}</Card.Text>
+        <Card.Title className="karteL-title">Featured</Card.Title>
+        <Card.Text className="karteL-text">
+          {movie.Featured ? 'Yes' : 'No'}
+        </Card.Text>
+        <Button
+          variant="outline-custom"
+          className="custom-button me-3 my-3"
+          size="md"
+          Button
+          onClick={onBackClick}
+        >
           Back
-        </button>
-        <button className="scroll-button" onClick={onLogoutClick}>
-          Logout
-        </button>
-      </div>
-    </div>
+        </Button>
+      </Card.Body>
+    </Card>
   );
 };
 
