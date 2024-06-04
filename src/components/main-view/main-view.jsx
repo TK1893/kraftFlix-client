@@ -2,9 +2,33 @@ import React, { useState, useEffect } from 'react';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { LoginView } from '../login-view/login-view';
-import { SignupView } from '../signup-view/singnup-view';
-import { Row, Col, Button, Container, Navbar, Nav } from 'react-bootstrap';
+import { SignupView } from '../signup-view/signup-view';
+import { ProfileView } from '../profile-view/profile-view';
+import { Row, Col, Navbar, Container, Nav } from 'react-bootstrap';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { NavigationBar } from '../navigation-bar/navigation-bar';
 import '../../index.scss';
+
+// export const MainView = () => {
+//   const [books, setBooks] = useState([]);
+//   const [user, setUser] = useState(null);
+
+// useEffect(() => {
+//   fetch('https://openlibrary.org/search.json?q=star+wars')
+//     .then((response) => response.json())
+//     .then((data) => {
+//       const booksFromApi = data.docs.map((doc) => {
+//         return {
+//           id: doc.key,
+//           title: doc.title,
+//           image: `https://covers.openlibrary.org/b/id/${doc.cover_i}-L.jpg`,
+//           author: doc.author_name?.[0],
+//         };
+//       });
+
+//       setBooks(booksFromApi);
+//     });
+// }, []);
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem('user'));
@@ -13,7 +37,8 @@ export const MainView = () => {
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
-  const [error, setError] = useState(null);
+  const [filter, setFilter] = useState('');
+  // const [error, setError] = useState(null);
 
   useEffect(() => {
     if (!token) {
@@ -24,6 +49,7 @@ export const MainView = () => {
     })
       .then((response) => response.json())
       .then((data) => {
+        console.log(data);
         const moviesFromApi = data.map((movie) => ({
           Imageurl: movie.Imageurl,
           ID: movie._id,
@@ -36,109 +62,92 @@ export const MainView = () => {
           Year: movie.Year,
         }));
         setMovies(moviesFromApi);
-      })
-      .catch((error) => {
-        console.error('There was a problem with the fetch operation:', error);
-        setError(error.message);
       });
+    // .catch((error) => {
+    //   console.error('There was a problem with the fetch operation:', error);
+    //   setError(error.message);
+    // });
   }, [token]);
 
-  const handleLogout = () => {
-    setUser(null);
-    setToken(null);
-    localStorage.clear();
-  };
-
-  const handleBrandClick = () => {
-    setSelectedMovie(null);
-  };
-
   return (
-    <Container fluid>
-      <Navbar bg="black" className="mb-5 mt-1">
-        <Container>
-          <Navbar.Brand
-            className="kraftflix-title"
-            href="#"
-            onClick={handleBrandClick}
-          >
-            <h1>kraftFlix</h1>
-          </Navbar.Brand>
-          {user && (
-            <Nav className="ml-auto">
-              <Button
-                className="ciao-button"
-                variant="outline-cia"
-                onClick={handleLogout}
-              >
-                Logout
-              </Button>
-            </Nav>
-          )}
-        </Container>
-      </Navbar>
+    <BrowserRouter>
+      <NavigationBar
+        user={user}
+        onLoggedOut={() => {
+          setUser(null);
+          setToken(null);
+          localStorage.clear();
+        }}
+      />
+      <Row className="justify-content-md-center">
+        <Routes>
+          <Route
+            path="/signup"
+            element={
+              <>
+                {user ? (
+                  <Navigate to="/" />
+                ) : (
+                  <Col md={5}>
+                    <SignupView />
+                  </Col>
+                )}
+              </>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <>
+                {user ? (
+                  <Navigate to="/" />
+                ) : (
+                  <Col md={5}>
+                    <LoginView onLoggedIn={(user) => setUser(user)} />
+                  </Col>
+                )}
+              </>
+            }
+          />
+          <Route
+            path="/movies/:movieId"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : movies.length === 0 ? (
+                  <Col>The list is empty!</Col>
+                ) : (
+                  <Col md={8}>
+                    <MovieView movies={movies} />
+                  </Col>
+                )}
+              </>
+            }
+          />
 
-      <Container className="flex-grow-1">
-        <Row className="justify-content-md-center">
-          {!user ? (
-            <Col md={6}>
-              <LoginView
-                onLoggedIn={(user, token) => {
-                  setUser(user);
-                  setToken(token);
-                }}
-              />
-              or
-              <SignupView />
-            </Col>
-          ) : error ? (
-            <Col>
-              <div>Error: {error}</div>
-            </Col>
-          ) : selectedMovie ? (
-            <Col md={8}>
-              <MovieView
-                style={{ border: '1px solid green' }}
-                movie={selectedMovie}
-                onBackClick={() => setSelectedMovie(null)}
-                onLogoutClick={handleLogout}
-              />
-            </Col>
-          ) : movies.length === 0 ? (
-            <Col>
-              <div>The list is empty!</div>
-            </Col>
-          ) : (
-            <>
-              {movies.map((movie) => (
-                <Col
-                  className="mb-5"
-                  key={movie.ID}
-                  sm={6} //  ≥576px
-                  md={4} //  ≥768px
-                  lg={3} //  ≥992px
-                >
-                  <MovieCard
-                    movie={movie}
-                    onMovieClick={(newSelectedMovie) => {
-                      setSelectedMovie(newSelectedMovie);
-                    }}
-                    onLogoutClick={handleLogout}
-                  />
-                </Col>
-              ))}
-            </>
-          )}
-        </Row>
-      </Container>
-
-      <Navbar bg="black" variant="dark" className="mt-3 mb-1">
-        <Container className="justify-content-center">
-          <Navbar.Text className="kraftflix-footer">
-            &copy; 2024 kraftFlix
-          </Navbar.Text>
-        </Container>
-      </Navbar>
-    </Container>
+          <Route
+            path="/"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : movies.length === 0 ? (
+                  <Col>The list is empty!</Col>
+                ) : (
+                  <>
+                    {movies.map((movie) => (
+                      <Col className="mb-4" key={movie.ID} md={3}>
+                        <MovieCard movie={movie} />
+                      </Col>
+                    ))}
+                  </>
+                )}
+              </>
+            }
+          />
+        </Routes>
+      </Row>
+    </BrowserRouter>
   );
 };

@@ -1,9 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Card } from 'react-bootstrap';
+import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
 import '../../index.scss';
 
-export const MovieView = ({ movie, onBackClick, onLogoutClick }) => {
+// TOBI Variante ex-3.7
+export const MovieView = ({ movies }) => {
+  const { movieId } = useParams();
+
+  const movie = movies.find((m) => m.ID === movieId);
   return (
     <Card>
       <Card.Img className="w-80" variant="top" src={movie.Imageurl} />
@@ -28,38 +34,66 @@ export const MovieView = ({ movie, onBackClick, onLogoutClick }) => {
         <Card.Text className="karteL-text">
           {movie.Featured ? 'Yes' : 'No'}
         </Card.Text>
-        <Button
-          variant="outline-custom"
-          className="custom-button me-3 my-3"
-          size="md"
-          Button
-          onClick={onBackClick}
-        >
-          Back
-        </Button>
+        <Link to={`/`}>
+          <Button
+            variant="outline-custom"
+            className="custom-button me-3 my-3"
+            size="md"
+          >
+            Back
+          </Button>{' '}
+        </Link>
       </Card.Body>
     </Card>
   );
 };
 
-MovieView.propTypes = {
-  movie: PropTypes.shape({
-    ID: PropTypes.string,
-    Title: PropTypes.string.isRequired,
-    Description: PropTypes.string,
-    Director: PropTypes.shape({
-      Name: PropTypes.string,
-      Bio: PropTypes.string,
-    }),
-    Genre: PropTypes.shape({
-      Name: PropTypes.string,
-      Description: PropTypes.string,
-    }),
-    Imageurl: PropTypes.string,
-    Featured: PropTypes.bool,
-    Year: PropTypes.string,
-    Actors: PropTypes.arrayOf(PropTypes.string),
-  }).isRequired,
-  onBackClick: PropTypes.func.isRequired,
-  onLogoutClick: PropTypes.func.isRequired,
-};
+// CF Variante ex-3.7
+// import { useParams } from 'react-router';
+// import { Link } from 'react-router-dom';
+// import PropTypes from 'prop-types';
+
+// export const MovieView = ({ movies }) => {
+//   const { movieId } = useParams();
+
+//   const movie = movies.find((m) => m.ID === movieId);
+
+//   return (
+//     <div>
+//       <div>
+//         <img className="w-100" src={movie.Imageurl} />
+//       </div>
+//       <div>
+//         <span>Title: </span>
+//         <span>{movie.Title}</span>
+//       </div>
+//       <div>
+//         <span>Director: </span>
+//         <span>{movie.Director.Name}</span>
+//       </div>
+//       <Link to={`/`}>
+//         <button className="back-button">Back</button>
+//       </Link>
+//     </div>
+//   );
+// };
+
+// MovieView.propTypes = {
+//   movie: PropTypes.shape({
+//     ID: PropTypes.string,
+//     Title: PropTypes.string.isRequired,
+//     Description: PropTypes.string,
+//     Director: PropTypes.shape({
+//       Name: PropTypes.string,
+//       Bio: PropTypes.string,
+//     }),
+//     Genre: PropTypes.shape({
+//       Name: PropTypes.string,
+//       Description: PropTypes.string,
+//     }),
+//     Imageurl: PropTypes.string,
+//     Featured: PropTypes.bool,
+//     Year: PropTypes.string,
+//     Actors: PropTypes.arrayOf(PropTypes.string),
+//   }).isRequired,
+// };

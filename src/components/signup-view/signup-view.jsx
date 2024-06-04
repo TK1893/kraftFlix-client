@@ -39,6 +39,7 @@ export const SignupView = () => {
       <Card.Body>
         <Card.Title className="kAuth-title">Signup</Card.Title>
         <Form onSubmit={handleSubmit}>
+          {/* USERNAME */}
           <Form.Group controlId="formUsername">
             <Form.Label>Username:</Form.Label>
             <Form.Control
@@ -49,7 +50,7 @@ export const SignupView = () => {
               minLength="3"
             />
           </Form.Group>
-
+          {/* PASSWORD */}
           <Form.Group controlId="formPassword">
             <Form.Label>Password:</Form.Label>
             <Form.Control
@@ -59,7 +60,7 @@ export const SignupView = () => {
               required
             />
           </Form.Group>
-
+          {/* EMAIL */}
           <Form.Group controlId="formEmail">
             <Form.Label>Email:</Form.Label>
             <Form.Control
@@ -69,6 +70,7 @@ export const SignupView = () => {
               required
             />
           </Form.Group>
+          {/* BIRTHDAY */}
           <Form.Group controlId="formBirthday">
             <Form.Label>Birthday:</Form.Label>
             <Form.Control
