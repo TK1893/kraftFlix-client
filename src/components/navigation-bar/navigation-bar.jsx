@@ -37,12 +37,13 @@ import { Link } from 'react-router-dom';
 //   );
 // };
 
+// Version Tobi
 export const NavigationBar = ({ user, onLoggedOut }) => {
   return (
     // <Container fluid>
-    <Navbar bg="black" className="mb-5 mt-1">
+    <Navbar bg="black" expand="lg" className="mb-5">
       <Container>
-        <Navbar.Brand as={Link} to="/" className="kraftflix-title" href="#">
+        <Navbar.Brand as={Link} to="/" className="kraftflix-title me-5">
           <h1>kraftFlix</h1>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -60,10 +61,10 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
             )}
             {user && (
               <>
-                <Nav.Link as={Link} to="/" className="ciao-button">
+                <Nav.Link as={Link} to="/" className="ciao-button ms-5">
                   Home
                 </Nav.Link>
-                <Nav.Link onClick={onLoggedOut} className="ciao-button">
+                <Nav.Link onClick={onLoggedOut} className="ciao-button mx-5">
                   Logout
                 </Nav.Link>
               </>

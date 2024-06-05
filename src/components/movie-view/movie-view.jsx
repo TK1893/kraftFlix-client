@@ -78,22 +78,22 @@ export const MovieView = ({ movies }) => {
 //   );
 // };
 
-// MovieView.propTypes = {
-//   movie: PropTypes.shape({
-//     ID: PropTypes.string,
-//     Title: PropTypes.string.isRequired,
-//     Description: PropTypes.string,
-//     Director: PropTypes.shape({
-//       Name: PropTypes.string,
-//       Bio: PropTypes.string,
-//     }),
-//     Genre: PropTypes.shape({
-//       Name: PropTypes.string,
-//       Description: PropTypes.string,
-//     }),
-//     Imageurl: PropTypes.string,
-//     Featured: PropTypes.bool,
-//     Year: PropTypes.string,
-//     Actors: PropTypes.arrayOf(PropTypes.string),
-//   }).isRequired,
-// };
+MovieView.propTypes = {
+  movie: PropTypes.shape({
+    ID: PropTypes.string,
+    Title: PropTypes.string.isRequired,
+    Description: PropTypes.string,
+    Director: PropTypes.shape({
+      Name: PropTypes.string,
+      Bio: PropTypes.string,
+    }),
+    Genre: PropTypes.shape({
+      Name: PropTypes.string,
+      Description: PropTypes.string,
+    }),
+    Imageurl: PropTypes.string,
+    Featured: PropTypes.bool,
+    Year: PropTypes.string,
+    Actors: PropTypes.arrayOf(PropTypes.string),
+  }).isRequired,
+};
