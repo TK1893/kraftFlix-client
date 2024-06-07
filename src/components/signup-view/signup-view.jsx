@@ -1,21 +1,33 @@
 import React, { useState } from 'react';
-import { Form, Button, Card } from 'react-bootstrap';
+import { Form, Button, Card, Alert } from 'react-bootstrap';
 import '../../index.scss';
 
 export const SignupView = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
-  const [birthday, setBirthday] = useState('');
+  const [birthdate, setBirthdate] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    // Validierung der Mindestlänge für den Benutzernamen und das Passwort
+    if (username.length < 3) {
+      setErrorMessage('Username must be at least 3 characters long');
+      return;
+    }
+    if (password.length < 3) {
+      setErrorMessage('Password must be at least 3 characters long');
+      return;
+    }
+
+    // Daten für das Backend vorbereiten
     const data = {
       Username: username,
       Password: password,
       Email: email,
-      Birthday: birthday,
+      Birthdate: birthdate,
     };
 
     fetch('https://kraftflix-api-d019e99d109c.herokuapp.com/users', {
@@ -24,20 +36,31 @@ export const SignupView = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-    }).then((response) => {
-      if (response.ok) {
-        alert('Signup successful');
-        window.location.reload();
-      } else {
-        alert('Signup failed');
-      }
-    });
+    })
+      .then((response) => {
+        if (response.ok) {
+          alert('Signup successful');
+          window.location.reload();
+        } else {
+          response.json().then((error) => {
+            console.error('Signup failed:', error);
+            setErrorMessage(
+              'Signup failed: ' + (error.message || 'Unknown error')
+            );
+          });
+        }
+      })
+      .catch((error) => {
+        console.error('Network error:', error);
+        setErrorMessage('Signup failed: Network error');
+      });
   };
 
   return (
     <Card className="my-3">
       <Card.Body>
         <Card.Title className="kAuth-title">Signup</Card.Title>
+        {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
         <Form onSubmit={handleSubmit}>
           {/* USERNAME */}
           <Form.Group controlId="formUsername">
@@ -45,7 +68,12 @@ export const SignupView = () => {
             <Form.Control
               type="text"
               value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={(e) => {
+                setUsername(e.target.value);
+                if (e.target.value.length >= 3) {
+                  setErrorMessage('');
+                }
+              }}
               required
               minLength="3"
             />
@@ -56,8 +84,14 @@ export const SignupView = () => {
             <Form.Control
               type="password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                if (e.target.value.length >= 3) {
+                  setErrorMessage('');
+                }
+              }}
               required
+              minLength="3"
             />
           </Form.Group>
           {/* EMAIL */}
@@ -70,13 +104,13 @@ export const SignupView = () => {
               required
             />
           </Form.Group>
-          {/* BIRTHDAY */}
-          <Form.Group controlId="formBirthday">
-            <Form.Label>Birthday:</Form.Label>
+          {/* BIRTHDATE */}
+          <Form.Group controlId="formBirthdate">
+            <Form.Label>Birthdate:</Form.Label>
             <Form.Control
               type="date"
-              value={birthday}
-              onChange={(e) => setBirthday(e.target.value)}
+              value={birthdate}
+              onChange={(e) => setBirthdate(e.target.value)}
               required
             />
           </Form.Group>
@@ -93,53 +127,3 @@ export const SignupView = () => {
     </Card>
   );
 };
-
-// <div className="auth-container">
-//   <h2 className="auth-heading">Signup</h2>
-//   <form className="auth-form" onSubmit={handleSubmit}>
-//     <label className="auth-label">
-//       Username:
-//       <input
-//         type="text"
-//         value={username}
-//         onChange={(e) => setUsername(e.target.value)}
-//         required
-//         minLength="3"
-//         className="auth-input"
-//       />
-//     </label>
-//     <label className="auth-label">
-//       Password:
-//       <input
-//         type="password"
-//         value={password}
-//         onChange={(e) => setPassword(e.target.value)}
-//         required
-//         className="auth-input"
-//       />
-//     </label>
-//     <label className="auth-label">
-//       Email:
-//       <input
-//         type="email"
-//         value={email}
-//         onChange={(e) => setEmail(e.target.value)}
-//         required
-//         className="auth-input"
-//       />
-//     </label>
-//     <label className="auth-label">
-//       Birthday:
-//       <input
-//         type="date"
-//         value={birthday}
-//         onChange={(e) => setBirthday(e.target.value)}
-//         required
-//         className="auth-input"
-//       />
-//     </label>
-//     <button type="submit" className="auth-button">
-//       Submit
-//     </button>
-//   </form>
-// </div>

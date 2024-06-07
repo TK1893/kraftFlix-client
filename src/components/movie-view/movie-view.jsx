@@ -1,15 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Card } from 'react-bootstrap';
-import { useParams } from 'react-router';
-import { Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import '../../index.scss';
 
-// TOBI Variante ex-3.7
-export const MovieView = ({ movies }) => {
+export const MovieView = ({ movies, addToFavorites }) => {
   const { movieId } = useParams();
 
   const movie = movies.find((m) => m.ID === movieId);
+
+  const handleAddToFavorites = () => {
+    addToFavorites(movie._id); // Übergeben Sie die _id des Films an die addToFavorites Funktion
+  };
+
   return (
     <Card>
       <Card.Img className="w-80" variant="top" src={movie.Imageurl} />
@@ -41,59 +44,35 @@ export const MovieView = ({ movies }) => {
             size="md"
           >
             Back
-          </Button>{' '}
+          </Button>
         </Link>
+        <Button variant="outline-custom" onClick={handleAddToFavorites}>
+          Favorite
+        </Button>
       </Card.Body>
     </Card>
   );
 };
 
-// CF Variante ex-3.7
-// import { useParams } from 'react-router';
-// import { Link } from 'react-router-dom';
-// import PropTypes from 'prop-types';
-
-// export const MovieView = ({ movies }) => {
-//   const { movieId } = useParams();
-
-//   const movie = movies.find((m) => m.ID === movieId);
-
-//   return (
-//     <div>
-//       <div>
-//         <img className="w-100" src={movie.Imageurl} />
-//       </div>
-//       <div>
-//         <span>Title: </span>
-//         <span>{movie.Title}</span>
-//       </div>
-//       <div>
-//         <span>Director: </span>
-//         <span>{movie.Director.Name}</span>
-//       </div>
-//       <Link to={`/`}>
-//         <button className="back-button">Back</button>
-//       </Link>
-//     </div>
-//   );
-// };
-
 MovieView.propTypes = {
-  movie: PropTypes.shape({
-    ID: PropTypes.string,
-    Title: PropTypes.string.isRequired,
-    Description: PropTypes.string,
-    Director: PropTypes.shape({
-      Name: PropTypes.string,
-      Bio: PropTypes.string,
-    }),
-    Genre: PropTypes.shape({
-      Name: PropTypes.string,
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired, // Die _id des Films als erforderliches Prop
+      Title: PropTypes.string.isRequired,
       Description: PropTypes.string,
-    }),
-    Imageurl: PropTypes.string,
-    Featured: PropTypes.bool,
-    Year: PropTypes.string,
-    Actors: PropTypes.arrayOf(PropTypes.string),
-  }).isRequired,
+      Director: PropTypes.shape({
+        Name: PropTypes.string,
+        Bio: PropTypes.string,
+      }),
+      Genre: PropTypes.shape({
+        Name: PropTypes.string,
+        Description: PropTypes.string,
+      }),
+      Imageurl: PropTypes.string,
+      Featured: PropTypes.bool,
+      Year: PropTypes.string,
+      Actors: PropTypes.arrayOf(PropTypes.string),
+    })
+  ).isRequired,
+  addToFavorites: PropTypes.func.isRequired, // Funktion zum Hinzufügen zu Favoriten als erforderliches Prop
 };

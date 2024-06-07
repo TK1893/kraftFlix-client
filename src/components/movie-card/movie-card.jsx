@@ -4,7 +4,11 @@ import { Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import '../../index.scss';
 
-export const MovieCard = ({ movie }) => {
+export const MovieCard = ({ movie, addToFavorites }) => {
+  const handleAddToFavorites = () => {
+    addToFavorites(movie._id); // Übergeben Sie die _id des Films an die addToFavorites Funktion
+  };
+
   return (
     <Card className="karteS h-100">
       <Card.Img variant="top" src={movie.Imageurl} />
@@ -14,6 +18,9 @@ export const MovieCard = ({ movie }) => {
         <Link to={`/movies/${encodeURIComponent(movie.ID)}`}>
           <Button variant="link">Open</Button>
         </Link>
+        <Button variant="outline-custom" onClick={handleAddToFavorites}>
+          Favorite
+        </Button>
       </Card.Body>
     </Card>
   );
@@ -21,7 +28,7 @@ export const MovieCard = ({ movie }) => {
 
 MovieCard.propTypes = {
   movie: PropTypes.shape({
-    ID: PropTypes.string.isRequired,
+    _id: PropTypes.string.isRequired, // Die _id des Films als erforderliches Prop
     Title: PropTypes.string.isRequired,
     Description: PropTypes.string,
     Director: PropTypes.shape({
@@ -37,4 +44,5 @@ MovieCard.propTypes = {
     Year: PropTypes.string,
     Actors: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
+  addToFavorites: PropTypes.func.isRequired, // Funktion zum Hinzufügen zu Favoriten als erforderliches Prop
 };
