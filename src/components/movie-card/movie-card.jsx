@@ -11,16 +11,24 @@ export const MovieCard = ({ movie, addToFavorites }) => {
 
   return (
     <Card className="karteS h-100">
-      <Card.Img variant="top" src={movie.Imageurl} />
+      <Link to={`/movies/${encodeURIComponent(movie.ID)}`}>
+        <Card.Img variant="top" src={movie.Imageurl} />
+      </Link>
       <Card.Body>
         <Card.Title className="karteS-title">{movie.Title}</Card.Title>
         <Card.Text className="karteS-text">{movie.Director.Name}</Card.Text>
-        <Link to={`/movies/${encodeURIComponent(movie.ID)}`}>
-          <Button variant="link">Open</Button>
-        </Link>
-        <Button variant="outline-custom" onClick={handleAddToFavorites}>
+        {/* <Link to={`/movies/${encodeURIComponent(movie.ID)}`}>
+          <Button className="custom-button" variant="link">
+            Details
+          </Button>
+        </Link> */}
+        {/* <Button
+          className="custom-button"
+          variant="outline-custom"
+          onClick={handleAddToFavorites}
+        >
           Favorite
-        </Button>
+        </Button> */}
       </Card.Body>
     </Card>
   );
