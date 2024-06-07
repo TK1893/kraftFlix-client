@@ -13207,12 +13207,12 @@ textarea.form-control-lg {
 
 .karteS-title {
   font-family: Abril Fatface, serif;
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 .karteS-text {
   font-family: Poppins, sans-serif;
-  font-size: .5rem;
+  font-size: .7rem;
 }
 
 .karteL-wrapper {
@@ -13274,6 +13274,32 @@ h6, .h6 {
   border-color: #000;
 }
 
+.favorite-button {
+  color: #faebd7;
+  border-width: 2px;
+  border-color: #000;
+  font-family: Abril Fatface, serif;
+}
+
+.favorite-button:hover {
+  color: #faebd7;
+  background-color: #535cdf;
+  border-color: #535cdf;
+}
+
+.heart-button {
+  color: #000;
+  border-width: 2px;
+  border-color: #000;
+  font-family: Abril Fatface, serif;
+}
+
+.heart-button:hover {
+  color: #faebd7;
+  background-color: #000;
+  border-color: #000;
+}
+
 .ciao-button {
   color: #faebd7;
   border-width: 1px;
@@ -13285,5 +13311,20 @@ h6, .h6 {
   color: #000;
   background-color: #faebd7;
   border-color: #faebd7;
+}
+
+.delete-movie-button {
+  color: #faebd7;
+  background-color: #000;
+  border-width: 2px;
+  border-color: #000;
+  font-family: Abril Fatface, serif;
+  font-size: 1rem;
+}
+
+.delete-movie-button:hover {
+  color: #faebd7;
+  background-color: red;
+  border-color: red;
 }
 /*# sourceMappingURL=index.2212206d.css.map */

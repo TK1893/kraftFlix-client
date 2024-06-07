@@ -23,11 +23,11 @@ $sec-font: 'Poppins', sans-serif;
 }
 .karteS-title {
   font-family: $pri-font;
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 .karteS-text {
   font-family: $sec-font;
-  font-size: 0.5rem;
+  font-size: 0.7rem;
 }
 
 // MovieView
@@ -90,6 +90,36 @@ h6 {
   }
 }
 
+.favorite-button {
+  font-family: $pri-font;
+  // font-weight: 400;
+  color: $secondary;
+  border-color: $primary;
+  border-width: 2px;
+
+  &:hover {
+    background-color: $third;
+    color: $secondary;
+    border-color: $third;
+  }
+}
+
+.heart-button {
+  // text-align: left;
+  font-family: $pri-font;
+  // font-weight: 400;
+  color: $primary;
+  border-color: $primary;
+  border-width: 2px;
+  // border-width: 2px;
+
+  &:hover {
+    background-color: $primary;
+    color: $secondary;
+    border-color: $primary;
+  }
+}
+
 .ciao-button {
   font-family: $pri-font;
   // font-weight: 400;
@@ -101,5 +131,23 @@ h6 {
     background-color: $secondary;
     color: $primary;
     border-color: $secondary;
+  }
+}
+
+.delete-movie-button {
+  // text-align: left;
+  font-size: 1rem;
+  font-family: $pri-font;
+  background-color: $primary;
+  // font-weight: 400;
+  color: $secondary;
+  border-color: $primary;
+  border-width: 2px;
+  // border-width: 2px;
+
+  &:hover {
+    background-color: red;
+    color: $secondary;
+    border-color: red;
   }
 }

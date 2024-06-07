@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Card } from 'react-bootstrap';
 import { useParams, Link } from 'react-router-dom';
+import { FaHeart } from 'react-icons/fa';
 import '../../index.scss';
 
 export const MovieView = ({ movies, addToFavorites }) => {
@@ -46,8 +47,13 @@ export const MovieView = ({ movies, addToFavorites }) => {
             Back
           </Button>
         </Link>
-        <Button variant="outline-custom" onClick={handleAddToFavorites}>
-          Favorite
+        <Button
+          variant="outline"
+          size="md"
+          className="heart-button me-3 my-3"
+          onClick={handleAddToFavorites}
+        >
+          <FaHeart /> add to favorites
         </Button>
       </Card.Body>
     </Card>

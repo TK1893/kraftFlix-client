@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Card, Button, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
 
 export const FavoriteMovies = ({
   user,
@@ -45,19 +46,26 @@ export const FavoriteMovies = ({
         <Card.Title className="kAuth-title">Favorite Movies</Card.Title>
         <div className="d-flex flex-wrap">
           {favoriteMovies.map((movie) => (
-            <Card className="m-2" key={movie._id} style={{ width: '18rem' }}>
-              <Card.Img variant="top" src={movie.Imageurl} />
+            <Card
+              className="m-2 karteS h-100"
+              key={movie._id}
+              style={{ width: '12rem' }}
+            >
+              <Link to={`/movies/${encodeURIComponent(movie.ID)}`}>
+                <Card.Img variant="top" src={movie.Imageurl} />
+              </Link>
               <Card.Body>
-                <Card.Title>{movie.Title}</Card.Title>
-                <Link to={`/movies/${encodeURIComponent(movie.ID)}`}>
+                <Card.Title className="karteS-title">{movie.Title}</Card.Title>
+                {/* <Link to={`/movies/${encodeURIComponent(movie.ID)}`}>
                   <Button variant="primary">Details</Button>
-                </Link>
+                </Link> */}
                 <Button
-                  variant="danger"
-                  className="mt-2"
+                  size="sm"
+                  variant="outline"
+                  className="mt-2 delete-movie-button"
                   onClick={() => handleRemoveFromFavorites(movie._id)}
                 >
-                  Delete from FavoriteList
+                  Delete from Favorites
                 </Button>
               </Card.Body>
             </Card>

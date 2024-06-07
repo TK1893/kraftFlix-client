@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { FaHeart } from 'react-icons/fa';
 import '../../index.scss';
 
 export const MovieCard = ({ movie, addToFavorites }) => {
@@ -23,11 +24,12 @@ export const MovieCard = ({ movie, addToFavorites }) => {
           </Button>
         </Link> */}
         <Button
-          className="custom-button"
+          size="sm"
+          className="heart-button"
           variant="outline-custom"
           onClick={handleAddToFavorites}
         >
-          Favorite
+          <FaHeart />
         </Button>
       </Card.Body>
     </Card>

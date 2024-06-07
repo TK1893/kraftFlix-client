@@ -4,10 +4,9 @@ import { MovieView } from '../movie-view/movie-view';
 import { LoginView } from '../login-view/login-view';
 import { SignupView } from '../signup-view/signup-view';
 import { ProfileView } from '../profile-view/profile-view';
-import { Row, Col, Navbar, Container, Nav } from 'react-bootstrap';
+import { Row, Col, Container } from 'react-bootstrap';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { NavigationBar } from '../navigation-bar/navigation-bar';
-import '../../index.scss';
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem('user'));
@@ -86,87 +85,97 @@ export const MainView = () => {
           localStorage.clear();
         }}
       />
-      <Row className="justify-content-md-center">
-        <Routes>
-          <Route
-            path="/signup"
-            element={
-              <>
-                {user ? (
-                  <Navigate to="/" />
-                ) : (
-                  <Col md={5}>
-                    <SignupView />
-                  </Col>
-                )}
-              </>
-            }
-          />
-          <Route
-            path="/login"
-            element={
-              <>
-                {user ? (
-                  <Navigate to="/" />
-                ) : (
-                  <Col md={5}>
-                    <LoginView onLoggedIn={(user) => setUser(user)} />
-                  </Col>
-                )}
-              </>
-            }
-          />
-          <Route
-            path="/movies/:movieId"
-            element={
-              <>
-                {!user ? (
-                  <Navigate to="/login" replace />
-                ) : movies.length === 0 ? (
-                  <Col>The list is empty!</Col>
-                ) : (
-                  <Col md={8}>
-                    <MovieView
-                      movies={movies}
-                      addToFavorites={addToFavorites}
-                    />
-                  </Col>
-                )}
-              </>
-            }
-          />
+      <Container>
+        <Row className="justify-content-md-center">
+          <Routes>
+            <Route
+              path="/signup"
+              element={
+                <>
+                  {user ? (
+                    <Navigate to="/" />
+                  ) : (
+                    <Col md={5}>
+                      <SignupView />
+                    </Col>
+                  )}
+                </>
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <>
+                  {user ? (
+                    <Navigate to="/" />
+                  ) : (
+                    <Col md={5}>
+                      <LoginView onLoggedIn={(user) => setUser(user)} />
+                    </Col>
+                  )}
+                </>
+              }
+            />
+            <Route
+              path="/movies/:movieId"
+              element={
+                <>
+                  {!user ? (
+                    <Navigate to="/login" replace />
+                  ) : movies.length === 0 ? (
+                    <Col>The list is empty!</Col>
+                  ) : (
+                    <Col md={8}>
+                      <MovieView
+                        movies={movies}
+                        addToFavorites={addToFavorites}
+                      />
+                    </Col>
+                  )}
+                </>
+              }
+            />
 
-          <Route
-            path="/"
-            element={
-              <>
-                {!user ? (
-                  <Navigate to="/login" replace />
-                ) : movies.length === 0 ? (
-                  <Col>The list is empty!</Col>
-                ) : (
-                  <>
-                    {movies.map((movie) => (
-                      <Col className="mb-4" key={movie.ID} md={3}>
-                        <MovieCard
-                          movie={movie}
-                          addToFavorites={addToFavorites}
-                        />
-                      </Col>
-                    ))}
-                  </>
-                )}
-              </>
-            }
-          />
-          <Route
-            path="/profile"
-            element={
-              <ProfileView user={user} favoriteMovies={favoriteMovies} />
-            }
-          />
-        </Routes>
-      </Row>
+            <Route
+              path="/"
+              element={
+                <>
+                  {!user ? (
+                    <Navigate to="/login" replace />
+                  ) : movies.length === 0 ? (
+                    <Col>The list is empty!</Col>
+                  ) : (
+                    <>
+                      {movies.map((movie) => (
+                        <Col
+                          key={movie.ID}
+                          className="mb-4"
+                          xs={12}
+                          sm={6}
+                          md={4}
+                          lg={3}
+                          xl={2}
+                        >
+                          <MovieCard
+                            movie={movie}
+                            addToFavorites={addToFavorites}
+                          />
+                        </Col>
+                      ))}
+                    </>
+                  )}
+                </>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <ProfileView user={user} favoriteMovies={favoriteMovies} />
+              }
+            />
+          </Routes>
+        </Row>
+      </Container>
     </BrowserRouter>
   );
 };
