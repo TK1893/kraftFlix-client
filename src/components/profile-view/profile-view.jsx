@@ -3,11 +3,20 @@ import PropTypes from 'prop-types';
 import { Card, Container, Button, Alert } from 'react-bootstrap';
 import { Link, Navigate } from 'react-router-dom';
 import { UpdateUserForm } from '../update-user-form/update-user-form';
+import { DeleteUser } from '../delete-user/delete-user';
 
 export const ProfileView = ({ user, favoriteMovies }) => {
   const [updatedFavoriteMovies, setUpdatedFavoriteMovies] =
     useState(favoriteMovies);
   const [errorMessage, setErrorMessage] = useState('');
+
+  const formatBirthday = (dateString) => {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
 
   const handleRemoveFromFavorites = (movieId) => {
     fetch(
@@ -61,7 +70,10 @@ export const ProfileView = ({ user, favoriteMovies }) => {
             <strong>Email:</strong> {user.Email}
           </Card.Text>
           <Card.Text>
-            <strong>Birthdate:</strong> {user.Birthdate}
+            <strong>Birthdate:</strong> {formatBirthday(user.Birthdate)}
+          </Card.Text>
+          <Card.Text>
+            <strong>FavoriteMovies:</strong> {user.FavoriteMovies}
           </Card.Text>
         </Card.Body>
       </Card>
@@ -99,6 +111,10 @@ export const ProfileView = ({ user, favoriteMovies }) => {
         user={user}
         token={localStorage.getItem('token')}
         onUpdateUser={handleUpdateUser}
+      />
+      <DeleteUser
+        username={user.Username}
+        token={localStorage.getItem('token')}
       />
     </Container>
   );
