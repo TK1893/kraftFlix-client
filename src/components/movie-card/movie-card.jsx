@@ -22,13 +22,13 @@ export const MovieCard = ({ movie, addToFavorites }) => {
             Details
           </Button>
         </Link> */}
-        {/* <Button
+        <Button
           className="custom-button"
           variant="outline-custom"
           onClick={handleAddToFavorites}
         >
           Favorite
-        </Button> */}
+        </Button>
       </Card.Body>
     </Card>
   );

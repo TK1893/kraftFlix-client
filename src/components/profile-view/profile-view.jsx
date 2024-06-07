@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Card, Container, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
@@ -11,6 +11,12 @@ export const ProfileView = ({ user, favoriteMovies }) => {
     useState(favoriteMovies);
   const [isUserDeleted, setIsUserDeleted] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user) {
+      navigate('/login', { replace: true });
+    }
+  }, [user, navigate]);
 
   const handleRemoveFavorite = (movieId) => {
     setUpdatedFavoriteMovies(
@@ -28,9 +34,16 @@ export const ProfileView = ({ user, favoriteMovies }) => {
   };
 
   // Redirect to login if user is deleted
-  if (isUserDeleted) {
-    navigate('/login', { replace: true });
-    return null;
+  useEffect(() => {
+    if (isUserDeleted) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      navigate('/login', { replace: true });
+    }
+  }, [isUserDeleted, navigate]);
+
+  if (!user) {
+    return null; // or render a loading spinner or message
   }
 
   return (
