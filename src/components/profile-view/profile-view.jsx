@@ -1,20 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Card, Container, Button, Alert } from 'react-bootstrap';
 import { Link, Navigate } from 'react-router-dom';
+import { UpdateUserForm } from '../update-user-form/update-user-form';
 
 export const ProfileView = ({ user, favoriteMovies }) => {
-  const [loading, setLoading] = useState(true);
   const [updatedFavoriteMovies, setUpdatedFavoriteMovies] =
     useState(favoriteMovies);
   const [errorMessage, setErrorMessage] = useState('');
-
-  const formatBirthday = (dateString) => {
-    const date = new Date(dateString);
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
-  };
 
   const handleRemoveFromFavorites = (movieId) => {
     fetch(
@@ -46,6 +39,11 @@ export const ProfileView = ({ user, favoriteMovies }) => {
       });
   };
 
+  const handleUpdateUser = (updatedUser) => {
+    localStorage.setItem('user', JSON.stringify(updatedUser));
+    window.location.reload();
+  };
+
   // Redirect to login if user is not logged in
   if (!user) {
     return <Navigate to="/login" replace />;
@@ -63,11 +61,7 @@ export const ProfileView = ({ user, favoriteMovies }) => {
             <strong>Email:</strong> {user.Email}
           </Card.Text>
           <Card.Text>
-            <strong>Birthdate:</strong> {formatBirthday(user.Birthdate)}
-          </Card.Text>
-          <Card.Text>
-            <strong>Favorite Movies:</strong>
-            {user.FavoriteMovies + ','}
+            <strong>Birthdate:</strong> {user.Birthdate}
           </Card.Text>
         </Card.Body>
       </Card>
@@ -101,6 +95,27 @@ export const ProfileView = ({ user, favoriteMovies }) => {
           )}
         </Card.Body>
       </Card>
+      <UpdateUserForm
+        user={user}
+        token={localStorage.getItem('token')}
+        onUpdateUser={handleUpdateUser}
+      />
     </Container>
   );
+};
+
+ProfileView.propTypes = {
+  user: PropTypes.shape({
+    Username: PropTypes.string.isRequired,
+    Email: PropTypes.string.isRequired,
+    Birthdate: PropTypes.string.isRequired,
+    FavoriteMovies: PropTypes.arrayOf(PropTypes.string).isRequired,
+  }).isRequired,
+  favoriteMovies: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      Title: PropTypes.string.isRequired,
+      Imageurl: PropTypes.string,
+    })
+  ).isRequired,
 };
