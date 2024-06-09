@@ -13190,12 +13190,6 @@ textarea.form-control-lg {
   }
 }
 
-.kraftflix-title h1, .kraftflix-title .h1 {
-  color: #faebd7;
-  font-family: Abril Fatface, serif;
-  font-size: 4rem;
-}
-
 .kraftflix-footer {
   color: #faebd7;
   font-family: Abril Fatface, serif;
@@ -13283,8 +13277,8 @@ h6, .h6 {
 
 .favorite-button:hover {
   color: #faebd7;
-  background-color: #535cdf;
-  border-color: #535cdf;
+  background-color: #ff00a2;
+  border-color: #ff00a2;
 }
 
 .heart-button {
@@ -13296,21 +13290,8 @@ h6, .h6 {
 
 .heart-button:hover {
   color: #faebd7;
-  background-color: #000;
-  border-color: #000;
-}
-
-.ciao-button {
-  color: #faebd7;
-  border-width: 1px;
-  border-color: #faebd7;
-  font-family: Abril Fatface, serif;
-}
-
-.ciao-button:hover {
-  color: #000;
-  background-color: #faebd7;
-  border-color: #faebd7;
+  background-color: #ff00a2;
+  border-color: #ff00a2;
 }
 
 .delete-movie-button {
@@ -13324,7 +13305,32 @@ h6, .h6 {
 
 .delete-movie-button:hover {
   color: #faebd7;
-  background-color: red;
-  border-color: red;
+  background-color: #ff00a2;
+  border-color: #ff00a2;
+}
+
+.karte-title {
+  color: #000;
+  font-family: Abril Fatface, serif;
+  font-size: 2rem;
+}
+
+.nav-item {
+  color: #faebd7;
+  font-family: Abril Fatface, serif;
+}
+
+.nav-item:hover {
+  color: #ff00a2;
+}
+
+.nav-item.active {
+  color: #ff00a2 !important;
+}
+
+.kraftflix-title h1 {
+  color: #ff00a2;
+  font-family: Abril Fatface, serif;
+  font-size: 4rem;
 }
 /*# sourceMappingURL=index.2212206d.css.map */

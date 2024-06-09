@@ -1,16 +1,11 @@
 $primary: #000;
 $secondary: antiquewhite;
-$third: rgb(83, 92, 223);
+$tertiary: #ff00a2;
+$quatenary: rgb(83, 92, 223);
 $body-bg: antiquewhite;
 $pri-font: 'Abril Fatface', serif;
 $sec-font: 'Poppins', sans-serif;
 @import '~bootstrap/scss/bootstrap.scss';
-
-.kraftflix-title h1 {
-  color: $secondary;
-  font-family: $pri-font;
-  font-size: 4rem;
-}
 
 .kraftflix-footer {
   color: $secondary;
@@ -98,39 +93,22 @@ h6 {
   border-width: 2px;
 
   &:hover {
-    background-color: $third;
+    background-color: $tertiary;
     color: $secondary;
-    border-color: $third;
+    border-color: $tertiary;
   }
 }
 
 .heart-button {
-  // text-align: left;
   font-family: $pri-font;
-  // font-weight: 400;
   color: $primary;
   border-color: $primary;
   border-width: 2px;
-  // border-width: 2px;
 
   &:hover {
-    background-color: $primary;
+    background-color: $tertiary;
     color: $secondary;
-    border-color: $primary;
-  }
-}
-
-.ciao-button {
-  font-family: $pri-font;
-  // font-weight: 400;
-  color: $secondary;
-  border-color: $secondary;
-  border-width: 1px;
-
-  &:hover {
-    background-color: $secondary;
-    color: $primary;
-    border-color: $secondary;
+    border-color: $tertiary;
   }
 }
 
@@ -146,8 +124,8 @@ h6 {
   // border-width: 2px;
 
   &:hover {
-    background-color: red;
+    background-color: $tertiary;
     color: $secondary;
-    border-color: red;
+    border-color: $tertiary;
   }
 }

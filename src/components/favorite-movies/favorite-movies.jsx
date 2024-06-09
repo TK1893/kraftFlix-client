@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Card, Button, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
+import { FaHeart } from 'react-icons/fa';
 
 export const FavoriteMovies = ({
   user,
@@ -47,7 +47,7 @@ export const FavoriteMovies = ({
         <div className="d-flex flex-wrap">
           {favoriteMovies.map((movie) => (
             <Card
-              className="m-2 karteS h-100"
+              className="m-2 h-100 karteS "
               key={movie._id}
               style={{ width: '12rem' }}
             >
@@ -65,7 +65,7 @@ export const FavoriteMovies = ({
                   className="mt-2 delete-movie-button"
                   onClick={() => handleRemoveFromFavorites(movie._id)}
                 >
-                  Delete from Favorites
+                  Delete from <FaHeart />
                 </Button>
               </Card.Body>
             </Card>

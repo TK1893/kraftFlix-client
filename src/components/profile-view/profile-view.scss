@@ -1,0 +1,13 @@
+$primary: #000;
+$secondary: antiquewhite;
+$tertiary: #ff00a2;
+$quatenary: rgb(83, 92, 223);
+$body-bg: antiquewhite;
+$pri-font: 'Abril Fatface', serif;
+$sec-font: 'Poppins', sans-serif;
+
+.karte-title {
+  color: $primary;
+  font-family: $pri-font;
+  font-size: 2rem;
+}

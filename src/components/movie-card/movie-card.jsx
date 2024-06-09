@@ -29,7 +29,7 @@ export const MovieCard = ({ movie, addToFavorites }) => {
           variant="outline-custom"
           onClick={handleAddToFavorites}
         >
-          <FaHeart />
+          Add to <FaHeart />
         </Button>
       </Card.Body>
     </Card>
