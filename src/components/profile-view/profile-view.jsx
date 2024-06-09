@@ -32,6 +32,7 @@ export const ProfileView = ({ user, favoriteMovies }) => {
 
   const handleUserDeleted = () => {
     setIsUserDeleted(true);
+    navigate('/login'); // Redirect to login page
   };
 
   // Redirect to login if user is deleted

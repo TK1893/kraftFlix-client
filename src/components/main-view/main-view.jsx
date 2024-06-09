@@ -7,6 +7,7 @@ import { ProfileView } from '../profile-view/profile-view';
 import { Row, Col, Container } from 'react-bootstrap';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { NavigationBar } from '../navigation-bar/navigation-bar';
+import { DeleteUser } from '../delete-user/delete-user'; // Adjust the import path
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem('user'));
@@ -110,7 +111,12 @@ export const MainView = () => {
                     <Navigate to="/" />
                   ) : (
                     <Col md={5}>
-                      <LoginView onLoggedIn={(user) => setUser(user)} />
+                      <LoginView
+                        onLoggedIn={(user, token) => {
+                          setUser(user);
+                          setToken(token);
+                        }}
+                      />
                     </Col>
                   )}
                 </>
@@ -171,6 +177,21 @@ export const MainView = () => {
               path="/profile"
               element={
                 <ProfileView user={user} favoriteMovies={favoriteMovies} />
+              }
+            />
+            <Route
+              path="/delete-user"
+              element={
+                <DeleteUser
+                  username={user?.Username}
+                  token={token}
+                  onUserDeleted={() => {
+                    setUser(null);
+                    setToken(null);
+                    localStorage.clear();
+                    return <Navigate to="/login" />;
+                  }}
+                />
               }
             />
           </Routes>

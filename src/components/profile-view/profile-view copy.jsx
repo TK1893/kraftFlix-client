@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { UpdateUserForm } from '../update-user-form/update-user-form';
 import { DeleteUser } from '../delete-user/delete-user';
 import { FavoriteMovies } from '../favorite-movies/favorite-movies';
+import './profile-view.scss';
 
 export const ProfileView = ({ user, favoriteMovies }) => {
   const [updatedFavoriteMovies, setUpdatedFavoriteMovies] =
@@ -50,7 +51,8 @@ export const ProfileView = ({ user, favoriteMovies }) => {
     <Container fluid>
       <Card className="my-3">
         <Card.Body>
-          <Card.Title className="kAuth-title">Profile</Card.Title>
+          <Card.Title className="karte-title">User</Card.Title>
+
           <Card.Text>
             <strong>Name:</strong> {user.Username}
           </Card.Text>

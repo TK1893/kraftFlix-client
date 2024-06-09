@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Button, Card, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
-export const DeleteUser = ({ username, token, onUserDeleted }) => {
+export const DeleteUser = ({ username, token }) => {
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
@@ -21,7 +21,7 @@ export const DeleteUser = ({ username, token, onUserDeleted }) => {
         if (response.ok) {
           alert('Your account has been deleted successfully');
           localStorage.clear();
-          onUserDeleted(); // Trigger the event when user is deleted
+          navigate('/login');
         } else {
           response.json().then((error) => {
             throw new Error(error.message);
@@ -56,5 +56,4 @@ export const DeleteUser = ({ username, token, onUserDeleted }) => {
 DeleteUser.propTypes = {
   username: PropTypes.string.isRequired,
   token: PropTypes.string.isRequired,
-  onUserDeleted: PropTypes.func.isRequired, // New prop for handling user deletion
 };
