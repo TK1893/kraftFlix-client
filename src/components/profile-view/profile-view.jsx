@@ -48,6 +48,11 @@ export const ProfileView = ({ user, favoriteMovies }) => {
     return null; // or render a loading spinner or message
   }
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toISOString().split('T')[0]; // Get the date part only (yyyy-MM-dd)
+  };
+
   return (
     <Container fluid>
       <Card className="my-3">
@@ -61,11 +66,11 @@ export const ProfileView = ({ user, favoriteMovies }) => {
             <strong>Email:</strong> {user.Email}
           </Card.Text>
           <Card.Text>
-            <strong>Birthdate:</strong> {user.Birthdate}
+            <strong>Birthdate:</strong> {formatDate(user.Birthdate)}
           </Card.Text>
-          <Card.Text>
+          {/* <Card.Text>
             <strong>Favorite Movies:</strong> {user.FavoriteMovies}
-          </Card.Text>
+          </Card.Text> */}
         </Card.Body>
       </Card>
       <FavoriteMovies
