@@ -1,0 +1,33 @@
+$primary: #000;
+$secondary: antiquewhite;
+$tertiary: #ff00a2;
+$quatenary: rgb(83, 92, 223);
+
+$body-bg: antiquewhite;
+$pri-font: 'Abril Fatface', serif;
+$sec-font: 'Poppins', sans-serif;
+// @import '~bootstrap/scss/bootstrap.scss';
+
+.nav-item {
+  font-family: $pri-font;
+  // font-weight: 400;
+  color: $secondary;
+  // border-color: $secondary;
+  // border-width: 1px;
+
+  &:hover {
+    // background-color: $secondary;
+    color: $tertiary;
+    // border-color: $secondary;
+  }
+}
+
+.nav-item.active {
+  color: $tertiary !important;
+}
+
+.kraftflix-title h1 {
+  color: $tertiary;
+  font-family: $pri-font;
+  font-size: 4rem;
+}

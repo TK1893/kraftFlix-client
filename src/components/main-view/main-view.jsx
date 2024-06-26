@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { LoginView } from '../login-view/login-view';
-import { SignupView } from '../signup-view/singnup-view';
-import { Row, Col, Button, Container, Navbar, Nav } from 'react-bootstrap';
-import '../../index.scss';
+import { SignupView } from '../signup-view/signup-view';
+import { ProfileView } from '../profile-view/profile-view';
+import { Row, Col, Container } from 'react-bootstrap';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { NavigationBar } from '../navigation-bar/navigation-bar';
+import { DeleteUser } from '../delete-user/delete-user'; // Adjust the import path
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem('user'));
@@ -12,19 +15,21 @@ export const MainView = () => {
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
-  const [selectedMovie, setSelectedMovie] = useState(null);
-  const [error, setError] = useState(null);
+  const [favoriteMovies, setFavoriteMovies] = useState([]);
 
   useEffect(() => {
     if (!token) {
       return;
     }
+
     fetch('https://kraftflix-api-d019e99d109c.herokuapp.com/movies', {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((response) => response.json())
       .then((data) => {
+        console.log(data);
         const moviesFromApi = data.map((movie) => ({
+          _id: movie._id,
           Imageurl: movie.Imageurl,
           ID: movie._id,
           Title: movie.Title,
@@ -36,103 +41,162 @@ export const MainView = () => {
           Year: movie.Year,
         }));
         setMovies(moviesFromApi);
+
+        // Filter movies to get favoriteMovies
+        const favoriteMovies = moviesFromApi.filter(
+          (m) => user && user.FavoriteMovies.includes(m._id)
+        );
+        setFavoriteMovies(favoriteMovies);
       })
       .catch((error) => {
         console.error('There was a problem with the fetch operation:', error);
-        setError(error.message);
       });
-  }, [token]);
+  }, [token, user]);
 
-  const handleLogout = () => {
-    setUser(null);
-    setToken(null);
-    localStorage.clear();
-  };
-
-  const handleBrandClick = () => {
-    setSelectedMovie(null);
+  const addToFavorites = (movieId) => {
+    fetch(
+      `https://kraftflix-api-d019e99d109c.herokuapp.com/users/${user.Username}/movies/${movieId}`,
+      {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    )
+      .then((response) => {
+        if (response.ok) {
+          alert('Added to favorites successfully');
+        } else {
+          alert('Failed to add to favorites');
+        }
+      })
+      .catch((error) => {
+        console.error(
+          'There was a problem with the addToFavorites operation:',
+          error
+        );
+      });
   };
 
   return (
-    <Container fluid>
-      <Navbar bg="black" className="mb-5 mt-1">
-        <Container>
-          <Navbar.Brand
-            className="kraftflix-title"
-            href="#"
-            onClick={handleBrandClick}
-          >
-            <h1>kraftFlix</h1>
-          </Navbar.Brand>
-          {user && (
-            <Nav className="ml-auto">
-              <Button
-                className="ciao-button"
-                variant="outline-cia"
-                onClick={handleLogout}
-              >
-                Logout
-              </Button>
-            </Nav>
-          )}
-        </Container>
-      </Navbar>
-
-      <Container className="flex-grow-1">
+    <BrowserRouter>
+      <NavigationBar
+        user={user}
+        onLoggedOut={() => {
+          setUser(null);
+          setToken(null);
+          localStorage.clear();
+        }}
+      />
+      <Container>
         <Row className="justify-content-md-center">
-          {!user ? (
-            <Col md={6}>
-              <LoginView
-                onLoggedIn={(user, token) => {
-                  setUser(user);
-                  setToken(token);
-                }}
-              />
-              or
-              <SignupView />
-            </Col>
-          ) : error ? (
-            <Col>
-              <div>Error: {error}</div>
-            </Col>
-          ) : selectedMovie ? (
-            <Col md={8}>
-              <MovieView
-                style={{ border: '1px solid green' }}
-                movie={selectedMovie}
-                onBackClick={() => setSelectedMovie(null)}
-                onLogoutClick={handleLogout}
-              />
-            </Col>
-          ) : movies.length === 0 ? (
-            <Col>
-              <div>The list is empty!</div>
-            </Col>
-          ) : (
-            <>
-              {movies.map((movie) => (
-                <Col className="mb-5" key={movie.ID} md={3}>
-                  <MovieCard
-                    movie={movie}
-                    onMovieClick={(newSelectedMovie) => {
-                      setSelectedMovie(newSelectedMovie);
-                    }}
-                    onLogoutClick={handleLogout}
-                  />
-                </Col>
-              ))}
-            </>
-          )}
+          <Routes>
+            <Route
+              path="/signup"
+              element={
+                <>
+                  {user ? (
+                    <Navigate to="/" />
+                  ) : (
+                    <Col md={5}>
+                      <SignupView />
+                    </Col>
+                  )}
+                </>
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <>
+                  {user ? (
+                    <Navigate to="/" />
+                  ) : (
+                    <Col md={5}>
+                      <LoginView
+                        onLoggedIn={(user, token) => {
+                          setUser(user);
+                          setToken(token);
+                        }}
+                      />
+                    </Col>
+                  )}
+                </>
+              }
+            />
+            <Route
+              path="/movies/:movieId"
+              element={
+                <>
+                  {!user ? (
+                    <Navigate to="/login" replace />
+                  ) : movies.length === 0 ? (
+                    <Col>The list is empty!</Col>
+                  ) : (
+                    <Col md={8}>
+                      <MovieView
+                        movies={movies}
+                        addToFavorites={addToFavorites}
+                      />
+                    </Col>
+                  )}
+                </>
+              }
+            />
+
+            <Route
+              path="/"
+              element={
+                <>
+                  {!user ? (
+                    <Navigate to="/login" replace />
+                  ) : movies.length === 0 ? (
+                    <Col>The list is empty!</Col>
+                  ) : (
+                    <>
+                      {movies.map((movie) => (
+                        <Col
+                          key={movie.ID}
+                          className="mb-4"
+                          xs={12}
+                          sm={6}
+                          md={4}
+                          lg={3}
+                          xl={2}
+                        >
+                          <MovieCard
+                            movie={movie}
+                            addToFavorites={addToFavorites}
+                          />
+                        </Col>
+                      ))}
+                    </>
+                  )}
+                </>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <ProfileView user={user} favoriteMovies={favoriteMovies} />
+              }
+            />
+            <Route
+              path="/delete-user"
+              element={
+                <DeleteUser
+                  username={user?.Username}
+                  token={token}
+                  onUserDeleted={() => {
+                    setUser(null);
+                    setToken(null);
+                    localStorage.clear();
+                    return <Navigate to="/login" />;
+                  }}
+                />
+              }
+            />
+          </Routes>
         </Row>
       </Container>
-
-      <Navbar bg="black" variant="dark" className="mt-3 mb-1">
-        <Container className="justify-content-center">
-          <Navbar.Text className="kraftflix-footer">
-            &copy; 2024 kraftFlix
-          </Navbar.Text>
-        </Container>
-      </Navbar>
-    </Container>
+    </BrowserRouter>
   );
 };

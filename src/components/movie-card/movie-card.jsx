@@ -1,15 +1,36 @@
+import React from 'react';
 import PropTypes from 'prop-types';
-import { Card } from 'react-bootstrap';
+import { Button, Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { FaHeart } from 'react-icons/fa';
 import '../../index.scss';
-// import './movie-card.scss';
 
-export const MovieCard = ({ movie, onMovieClick }) => {
+export const MovieCard = ({ movie, addToFavorites }) => {
+  const handleAddToFavorites = () => {
+    addToFavorites(movie._id); // Übergeben Sie die _id des Films an die addToFavorites Funktion
+  };
+
   return (
-    <Card className="karteS h-100" onClick={() => onMovieClick(movie)}>
-      <Card.Img variant="top" src={movie.Imageurl} />
+    <Card className="karteS h-100">
+      <Link to={`/movies/${encodeURIComponent(movie.ID)}`}>
+        <Card.Img variant="top" src={movie.Imageurl} />
+      </Link>
       <Card.Body>
         <Card.Title className="karteS-title">{movie.Title}</Card.Title>
         <Card.Text className="karteS-text">{movie.Director.Name}</Card.Text>
+        {/* <Link to={`/movies/${encodeURIComponent(movie.ID)}`}>
+          <Button className="custom-button" variant="link">
+            Details
+          </Button>
+        </Link> */}
+        <Button
+          size="sm"
+          className="heart-button"
+          variant="outline-custom"
+          onClick={handleAddToFavorites}
+        >
+          Add to <FaHeart />
+        </Button>
       </Card.Body>
     </Card>
   );
@@ -17,7 +38,7 @@ export const MovieCard = ({ movie, onMovieClick }) => {
 
 MovieCard.propTypes = {
   movie: PropTypes.shape({
-    ID: PropTypes.string.isRequired,
+    _id: PropTypes.string.isRequired, // Die _id des Films als erforderliches Prop
     Title: PropTypes.string.isRequired,
     Description: PropTypes.string,
     Director: PropTypes.shape({
@@ -33,5 +54,5 @@ MovieCard.propTypes = {
     Year: PropTypes.string,
     Actors: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
-  onMovieClick: PropTypes.func.isRequired,
+  addToFavorites: PropTypes.func.isRequired, // Funktion zum Hinzufügen zu Favoriten als erforderliches Prop
 };
