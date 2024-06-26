@@ -119,8 +119,6 @@
 }
 
 [data-bs-theme="dark"] {
-  --lightningcss-light: ;
-  --lightningcss-dark: initial;
   color-scheme: dark;
   --bs-body-color: #dee2e6;
   --bs-body-color-rgb: 222, 226, 230;
@@ -13309,6 +13307,12 @@ h6, .h6 {
   border-color: #ff00a2;
 }
 
+.karte-title {
+  color: #000;
+  font-family: Abril Fatface, serif;
+  font-size: 2rem;
+}
+
 .nav-item {
   color: #faebd7;
   font-family: Abril Fatface, serif;
@@ -13326,11 +13330,5 @@ h6, .h6 {
   color: #ff00a2;
   font-family: Abril Fatface, serif;
   font-size: 4rem;
-}
-
-.karte-title {
-  color: #000;
-  font-family: Abril Fatface, serif;
-  font-size: 2rem;
 }
 /*# sourceMappingURL=index.2212206d.css.map */
