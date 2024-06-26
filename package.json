@@ -14,6 +14,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@parcel/watcher": "^2.4.1",
     "axios": "^1.7.2",
     "bootstrap": "^5.3.3",
     "prop-types": "^15.8.1",
