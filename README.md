@@ -13,14 +13,14 @@ kraftFlix-Client empowers users to seamlessly access information about various m
 - **Sign Up view:** Enables new users to register with their username, password, email, and date of birth.
 - **Profile view:** Shows user registration details, favorite movies, and allows users to update their information and remove movies from their favorites.
 
-### Optional Views & Features:
+<!-- ### Optional Views & Features:
 
 - **Actors view:** Allows users to view information about different actors.
 - **Genre view:** Provides data about a genre, including name and description.
 - **Director view:** Displays information about a director, such as name, bio, birth year, and example movies.
 - **Additional features for Single Movie view:** Allow users to see which actors star in which movies, view more information about movies, share a movie, and display related or similar movies.
 - **Additional features for Main view:** Allow users to sort movies based on different criteria.
-- **Additional features for Profile, Single Movie, and Main views:** Allow users to create a "To Watch" list in addition to their "Favorite Movies" list.
+- **Additional features for Profile, Single Movie, and Main views:** Allow users to create a "To Watch" list in addition to their "Favorite Movies" list. -->
 
 ## Technical Requirements
 
