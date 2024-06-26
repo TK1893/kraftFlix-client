@@ -16,6 +16,7 @@ export const MainView = () => {
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
   const [favoriteMovies, setFavoriteMovies] = useState([]);
+  const [searchTerm, setSearchTerm] = useState(''); // State for search term
 
   useEffect(() => {
     if (!token) {
@@ -27,7 +28,6 @@ export const MainView = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         const moviesFromApi = data.map((movie) => ({
           _id: movie._id,
           Imageurl: movie.Imageurl,
@@ -76,6 +76,11 @@ export const MainView = () => {
       });
   };
 
+  // Filtered movies based on search term
+  const filteredMovies = movies.filter((movie) =>
+    movie.Title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <BrowserRouter>
       <NavigationBar
@@ -85,6 +90,8 @@ export const MainView = () => {
           setToken(null);
           localStorage.clear();
         }}
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
       />
       <Container>
         <Row className="justify-content-md-center">
@@ -148,11 +155,11 @@ export const MainView = () => {
                 <>
                   {!user ? (
                     <Navigate to="/login" replace />
-                  ) : movies.length === 0 ? (
-                    <Col>The list is empty!</Col>
+                  ) : filteredMovies.length === 0 ? (
+                    <Col>No movies found!</Col>
                   ) : (
                     <>
-                      {movies.map((movie) => (
+                      {filteredMovies.map((movie) => (
                         <Col
                           key={movie.ID}
                           className="mb-4"
