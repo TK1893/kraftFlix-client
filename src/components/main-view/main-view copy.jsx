@@ -7,7 +7,9 @@ import { ProfileView } from '../profile-view/profile-view';
 import { Row, Col, Container } from 'react-bootstrap';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { NavigationBar } from '../navigation-bar/navigation-bar';
-import { DeleteUser } from '../delete-user/delete-user'; // Adjust the import path
+import { DeleteUser } from '../delete-user/delete-user';
+import { SearchBar } from '../search-bar/search-bar';
+import '../movie-card/movie-card.scss';
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem('user'));
@@ -16,6 +18,7 @@ export const MainView = () => {
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
   const [favoriteMovies, setFavoriteMovies] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     if (!token) {
@@ -42,7 +45,6 @@ export const MainView = () => {
         }));
         setMovies(moviesFromApi);
 
-        // Filter movies to get favoriteMovies
         const favoriteMovies = moviesFromApi.filter(
           (m) => user && user.FavoriteMovies.includes(m._id)
         );
@@ -75,6 +77,10 @@ export const MainView = () => {
         );
       });
   };
+
+  const filteredMovies = movies.filter((movie) =>
+    movie.Title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <BrowserRouter>
@@ -152,7 +158,13 @@ export const MainView = () => {
                     <Col>The list is empty!</Col>
                   ) : (
                     <>
-                      {movies.map((movie) => (
+                      <Col md={12} style={{ marginBottom: '1em' }}>
+                        <SearchBar
+                          searchTerm={searchTerm}
+                          setSearchTerm={setSearchTerm}
+                        />
+                      </Col>
+                      {filteredMovies.map((movie) => (
                         <Col
                           key={movie.ID}
                           className="mb-4"

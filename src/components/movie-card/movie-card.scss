@@ -8,14 +8,11 @@ $pri-font: 'Abril Fatface', serif;
 $sec-font: 'Poppins', sans-serif;
 .karteS {
   color: $primary;
-  transition: border-color box-shadow 0.3s ease; // Übergangseffekt für den Box-Schatten hinzufügen
+  transition: border-color box-shadow 0.3s ease;
 
   &:hover {
-    // border-color: rgba($primary, 0.5);
     box-shadow: 0 0 0.7rem rgba($primary, 0.8);
-    // border-color: rgba($tertiary, 0.8);
     border: none;
-    // border: 1px solid rgba($tertiary, 0.8);
   }
 
   .karteS-title {

@@ -102,7 +102,7 @@ export const MainView = () => {
                   {user ? (
                     <Navigate to="/" />
                   ) : (
-                    <Col md={5}>
+                    <Col xs={12} sm={6} md={4} lg={3} xl={2}>
                       <SignupView />
                     </Col>
                   )}
@@ -116,7 +116,7 @@ export const MainView = () => {
                   {user ? (
                     <Navigate to="/" />
                   ) : (
-                    <Col md={5}>
+                    <Col xs={12} sm={6} md={4} lg={3} xl={2}>
                       <LoginView
                         onLoggedIn={(user, token) => {
                           setUser(user);
@@ -135,9 +135,11 @@ export const MainView = () => {
                   {!user ? (
                     <Navigate to="/login" replace />
                   ) : movies.length === 0 ? (
-                    <Col>The list is empty!</Col>
+                    <Col xs={12} sm={6} md={4} lg={3} xl={2}>
+                      The list is empty!
+                    </Col>
                   ) : (
-                    <Col md={8}>
+                    <Col xs={12} sm={6} md={4} lg={3} xl={2}>
                       <MovieView
                         movies={movies}
                         addToFavorites={addToFavorites}
@@ -155,10 +157,19 @@ export const MainView = () => {
                   {!user ? (
                     <Navigate to="/login" replace />
                   ) : movies.length === 0 ? (
-                    <Col>The list is empty!</Col>
+                    <Col xs={12} sm={6} md={4} lg={3} xl={2}>
+                      The list is empty!
+                    </Col>
                   ) : (
                     <>
-                      <Col md={12} style={{ marginBottom: '1em' }}>
+                      <Col
+                        xs={12}
+                        sm={6}
+                        md={4}
+                        lg={3}
+                        xl={2}
+                        style={{ marginBottom: '1em' }}
+                      >
                         <SearchBar
                           searchTerm={searchTerm}
                           setSearchTerm={setSearchTerm}
