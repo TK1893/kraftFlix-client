@@ -1,16 +1,11 @@
-// src/components/navigation-bar/navigation-bar.jsx
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Navbar, Container, Nav, Form, FormControl } from 'react-bootstrap';
+import { Navbar, Container, Nav } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import './navigation-bar.scss';
+import { Navbar, Container, Nav } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
 
-export const NavigationBar = ({
-  user,
-  onLoggedOut,
-  searchTerm,
-  setSearchTerm,
-}) => {
+// Version Tobi
+export const NavigationBar = ({ user, onLoggedOut }) => {
   return (
     <Navbar bg="black" expand="md" className="mb-5">
       <Container>
@@ -45,7 +40,7 @@ export const NavigationBar = ({
                 <Nav.Link
                   as={NavLink}
                   to="/"
-                  exact
+                  exakt
                   className="nav-item ms-5"
                   activeClassName="active"
                 >
@@ -65,28 +60,8 @@ export const NavigationBar = ({
               </>
             )}
           </Nav>
-          {user && (
-            <Form className="d-flex">
-              <FormControl
-                type="search"
-                placeholder="Search for movies"
-                className="mr-sm-2"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-            </Form>
-          )}
         </Navbar.Collapse>
       </Container>
     </Navbar>
   );
-};
-
-NavigationBar.propTypes = {
-  user: PropTypes.shape({
-    Username: PropTypes.string.isRequired,
-  }),
-  onLoggedOut: PropTypes.func.isRequired,
-  searchTerm: PropTypes.string.isRequired,
-  setSearchTerm: PropTypes.func.isRequired,
 };

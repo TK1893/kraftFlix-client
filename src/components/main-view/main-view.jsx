@@ -18,11 +18,7 @@ export const MainView = () => {
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
   const [favoriteMovies, setFavoriteMovies] = useState([]);
-<<<<<<< HEAD
   const [searchTerm, setSearchTerm] = useState('');
-=======
-  const [searchTerm, setSearchTerm] = useState(''); // State for search term
->>>>>>> 63aa432aad2462945690d15827087961a42d744f
 
   useEffect(() => {
     if (!token) {
@@ -34,6 +30,7 @@ export const MainView = () => {
     })
       .then((response) => response.json())
       .then((data) => {
+        console.log(data);
         const moviesFromApi = data.map((movie) => ({
           _id: movie._id,
           Imageurl: movie.Imageurl,
@@ -81,10 +78,6 @@ export const MainView = () => {
       });
   };
 
-<<<<<<< HEAD
-=======
-  // Filtered movies based on search term
->>>>>>> 63aa432aad2462945690d15827087961a42d744f
   const filteredMovies = movies.filter((movie) =>
     movie.Title.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -98,8 +91,6 @@ export const MainView = () => {
           setToken(null);
           localStorage.clear();
         }}
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
       />
       <Container>
         <Row className="justify-content-md-center">
@@ -163,19 +154,16 @@ export const MainView = () => {
                 <>
                   {!user ? (
                     <Navigate to="/login" replace />
-                  ) : filteredMovies.length === 0 ? (
-                    <Col>No movies found!</Col>
+                  ) : movies.length === 0 ? (
+                    <Col>The list is empty!</Col>
                   ) : (
                     <>
-<<<<<<< HEAD
                       <Col md={12} style={{ marginBottom: '1em' }}>
                         <SearchBar
                           searchTerm={searchTerm}
                           setSearchTerm={setSearchTerm}
                         />
                       </Col>
-=======
->>>>>>> 63aa432aad2462945690d15827087961a42d744f
                       {filteredMovies.map((movie) => (
                         <Col
                           key={movie.ID}
