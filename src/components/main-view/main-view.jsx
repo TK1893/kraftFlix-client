@@ -102,7 +102,7 @@ export const MainView = () => {
                   {user ? (
                     <Navigate to="/" />
                   ) : (
-                    <Col xs={12} sm={6} md={4} lg={3} xl={2}>
+                    <Col md={8}>
                       <SignupView />
                     </Col>
                   )}
@@ -116,7 +116,7 @@ export const MainView = () => {
                   {user ? (
                     <Navigate to="/" />
                   ) : (
-                    <Col xs={12} sm={6} md={4} lg={3} xl={2}>
+                    <Col md={8}>
                       <LoginView
                         onLoggedIn={(user, token) => {
                           setUser(user);
@@ -135,11 +135,9 @@ export const MainView = () => {
                   {!user ? (
                     <Navigate to="/login" replace />
                   ) : movies.length === 0 ? (
-                    <Col xs={12} sm={6} md={4} lg={3} xl={2}>
-                      The list is empty!
-                    </Col>
+                    <Col>The list is empty!</Col>
                   ) : (
-                    <Col xs={12} sm={6} md={4} lg={3} xl={2}>
+                    <Col md={8}>
                       <MovieView
                         movies={movies}
                         addToFavorites={addToFavorites}
@@ -157,19 +155,10 @@ export const MainView = () => {
                   {!user ? (
                     <Navigate to="/login" replace />
                   ) : movies.length === 0 ? (
-                    <Col xs={12} sm={6} md={4} lg={3} xl={2}>
-                      The list is empty!
-                    </Col>
+                    <Col>The list is empty!</Col>
                   ) : (
                     <>
-                      <Col
-                        xs={12}
-                        sm={6}
-                        md={4}
-                        lg={3}
-                        xl={2}
-                        style={{ marginBottom: '1em' }}
-                      >
+                      <Col md={12} style={{ marginBottom: '1em' }}>
                         <SearchBar
                           searchTerm={searchTerm}
                           setSearchTerm={setSearchTerm}
@@ -180,7 +169,7 @@ export const MainView = () => {
                           key={movie.ID}
                           className="mb-4"
                           xs={12}
-                          sm={6}
+                          sm={12}
                           md={4}
                           lg={3}
                           xl={2}

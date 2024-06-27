@@ -1,26 +1,26 @@
-// $primary: #000;
-// $secondary: antiquewhite;
-// $tertiary: #ff00a2;
-// $quatenary: rgb(83, 92, 223);
-// $body-bg: antiquewhite;
-// $pri-font: 'Abril Fatface', serif;
-// $sec-font: 'Poppins', sans-serif;
+$primary: #000;
+$secondary: antiquewhite;
+$tertiary: #ff00a2;
+$quatenary: rgb(83, 92, 223);
+$body-bg: antiquewhite;
+$pri-font: 'Abril Fatface', serif;
+$sec-font: 'Poppins', sans-serif;
 
-// .nav-item {
-//   font-family: $pri-font;
-//   color: $secondary;
+.nav-item {
+  font-family: $pri-font;
+  color: $secondary;
 
-//   &:hover {
-//     color: $tertiary;
-//   }
-// }
+  &:hover {
+    color: $tertiary;
+  }
+}
 
-// .nav-item.active {
-//   color: $tertiary !important;
-// }
+.nav-item.active {
+  color: $tertiary !important;
+}
 
-// .kraftflix-title h1 {
-//   color: $tertiary;
-//   font-family: $pri-font;
-//   font-size: 4rem;
-// }
+.kraftflix-title h1 {
+  color: $tertiary;
+  font-family: $pri-font;
+  font-size: 4rem;
+}
