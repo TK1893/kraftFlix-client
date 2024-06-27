@@ -1,0 +1,43 @@
+$primary: #000;
+$secondary: antiquewhite;
+$tertiary: #ff00a2;
+$quatenary: rgb(83, 92, 223);
+
+$body-bg: antiquewhite;
+$pri-font: 'Abril Fatface', serif;
+$sec-font: 'Poppins', sans-serif;
+.custom-search-bar {
+  font-family: $sec-font;
+  font-size: small;
+  color: $primary;
+  caret-color: $primary;
+  background-color: rgba($tertiary, 0.1);
+  border: 1px solid rgba($tertiary, 1);
+  transition: border-color box-shadow 0.3s ease; // Übergangseffekt für den Box-Schatten hinzufügen
+
+  &::placeholder {
+    color: rgba($tertiary, 0.5);
+  }
+
+  &:focus {
+    color: $primary;
+    border-color: rgba($primary, 1);
+    box-shadow: 0 0 0.6rem rgba($primary, 0.3);
+    // border: none;
+    caret-color: $primary;
+    background-color: rgba($tertiary, 0.1);
+    &::placeholder {
+      color: rgba($tertiary, 0.3);
+    }
+  }
+  &:hover {
+    color: $primary;
+    caret-color: $primary;
+    border-color: $primary;
+    box-shadow: 0 0 0.6rem rgba($primary, 0.2);
+    background-color: rgba($tertiary, 0.1);
+    &::placeholder {
+      color: rgba($tertiary, 0.3);
+    }
+  }
+}

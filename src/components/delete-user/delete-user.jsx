@@ -39,7 +39,7 @@ export const DeleteUser = ({ username, token, onUserDeleted }) => {
   return (
     <Card className="my-3">
       <Card.Body>
-        <Card.Title className="kAuth-title">Deregister Account</Card.Title>
+        <Card.Title className="kAuth-title mb-3">Deregister Account</Card.Title>
         {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
         <Button
           className="delete-movie-button"

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Button, Card } from 'react-bootstrap';
 import { useParams, Link } from 'react-router-dom';
 import { FaHeart } from 'react-icons/fa';
+// import './movie-view.scss';
 import '../../index.scss';
 
 export const MovieView = ({ movies, addToFavorites }) => {

@@ -1,3 +1,25 @@
+.karteS {
+  color: #000;
+  transition: border-color box-shadow .3s ease;
+}
+
+.karteS:hover {
+  border: none;
+  box-shadow: 0 0 .7rem #000c;
+}
+
+.karteS .karteS-title {
+  color: #000;
+  font-family: Abril Fatface, serif;
+  font-size: 1.2rem;
+}
+
+.karteS .karteS-text {
+  color: #000c;
+  font-family: Poppins, sans-serif;
+  font-size: .7rem;
+}
+
 :root, [data-bs-theme="light"] {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -13188,23 +13210,9 @@ textarea.form-control-lg {
   }
 }
 
-.kraftflix-footer {
-  color: #faebd7;
-  font-family: Abril Fatface, serif;
-}
-
-.karteS {
-  color: #000;
-}
-
-.karteS-title {
-  font-family: Abril Fatface, serif;
-  font-size: 1.2rem;
-}
-
-.karteS-text {
-  font-family: Poppins, sans-serif;
-  font-size: .7rem;
+.card {
+  border: none;
+  box-shadow: 0 0 .5rem #00000080;
 }
 
 .karteL-wrapper {
@@ -13330,5 +13338,43 @@ h6, .h6 {
   color: #ff00a2;
   font-family: Abril Fatface, serif;
   font-size: 4rem;
+}
+
+.custom-search-bar {
+  color: #000;
+  caret-color: #000;
+  transition: border-color box-shadow .3s ease;
+  background-color: #ff00a21a;
+  border: 1px solid #ff00a2;
+  font-family: Poppins, sans-serif;
+  font-size: small;
+}
+
+.custom-search-bar::placeholder {
+  color: #ff00a280;
+}
+
+.custom-search-bar:focus {
+  color: #000;
+  caret-color: #000;
+  background-color: #ff00a21a;
+  border-color: #000;
+  box-shadow: 0 0 .6rem #0000004d;
+}
+
+.custom-search-bar:focus::placeholder {
+  color: #ff00a24d;
+}
+
+.custom-search-bar:hover {
+  color: #000;
+  caret-color: #000;
+  background-color: #ff00a21a;
+  border-color: #000;
+  box-shadow: 0 0 .6rem #0003;
+}
+
+.custom-search-bar:hover::placeholder {
+  color: #ff00a24d;
 }
 /*# sourceMappingURL=index.2212206d.css.map */
