@@ -68,9 +68,6 @@ export const ProfileView = ({ user, favoriteMovies }) => {
           <Card.Text>
             <strong>Birthdate:</strong> {formatDate(user.Birthdate)}
           </Card.Text>
-          {/* <Card.Text>
-            <strong>Favorite Movies:</strong> {user.FavoriteMovies}
-          </Card.Text> */}
         </Card.Body>
       </Card>
       <FavoriteMovies

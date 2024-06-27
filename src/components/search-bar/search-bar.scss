@@ -13,7 +13,7 @@ $sec-font: 'Poppins', sans-serif;
   caret-color: $primary;
   background-color: rgba($tertiary, 0.1);
   border: 1px solid rgba($tertiary, 1);
-  transition: border-color box-shadow 0.3s ease; // Übergangseffekt für den Box-Schatten hinzufügen
+  transition: border-color box-shadow 0.3s ease;
 
   &::placeholder {
     color: rgba($tertiary, 0.5);
@@ -23,7 +23,6 @@ $sec-font: 'Poppins', sans-serif;
     color: $primary;
     border-color: rgba($primary, 1);
     box-shadow: 0 0 0.6rem rgba($primary, 0.3);
-    // border: none;
     caret-color: $primary;
     background-color: rgba($tertiary, 0.1);
     &::placeholder {

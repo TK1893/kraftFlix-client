@@ -21,7 +21,7 @@ export const DeleteUser = ({ username, token, onUserDeleted }) => {
         if (response.ok) {
           alert('Your account has been deleted successfully');
           localStorage.clear();
-          onUserDeleted(); // Trigger the event when user is deleted
+          onUserDeleted();
         } else {
           response.json().then((error) => {
             throw new Error(error.message);
@@ -56,5 +56,5 @@ export const DeleteUser = ({ username, token, onUserDeleted }) => {
 DeleteUser.propTypes = {
   username: PropTypes.string.isRequired,
   token: PropTypes.string.isRequired,
-  onUserDeleted: PropTypes.func.isRequired, // New prop for handling user deletion
+  onUserDeleted: PropTypes.func.isRequired,
 };

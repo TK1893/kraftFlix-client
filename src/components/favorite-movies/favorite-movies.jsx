@@ -56,9 +56,6 @@ export const FavoriteMovies = ({
               </Link>
               <Card.Body>
                 <Card.Title className="karteS-title">{movie.Title}</Card.Title>
-                {/* <Link to={`/movies/${encodeURIComponent(movie.ID)}`}>
-                  <Button variant="primary">Details</Button>
-                </Link> */}
                 <Button
                   size="sm"
                   variant="outline"

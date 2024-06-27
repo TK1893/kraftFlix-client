@@ -8,7 +8,7 @@ import './movie-card.scss';
 
 export const MovieCard = ({ movie, addToFavorites }) => {
   const handleAddToFavorites = () => {
-    addToFavorites(movie._id); // Übergeben Sie die _id des Films an die addToFavorites Funktion
+    addToFavorites(movie._id);
   };
 
   return (
@@ -19,11 +19,6 @@ export const MovieCard = ({ movie, addToFavorites }) => {
       <Card.Body>
         <Card.Title className="karteS-title">{movie.Title}</Card.Title>
         <Card.Text className="karteS-text">{movie.Director.Name}</Card.Text>
-        {/* <Link to={`/movies/${encodeURIComponent(movie.ID)}`}>
-          <Button className="custom-button" variant="link">
-            Details
-          </Button>
-        </Link> */}
         <Button
           size="sm"
           className="heart-button"
