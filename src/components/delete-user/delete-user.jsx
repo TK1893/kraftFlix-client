@@ -21,7 +21,7 @@ export const DeleteUser = ({ username, token, onUserDeleted }) => {
         if (response.ok) {
           alert('Your account has been deleted successfully');
           localStorage.clear();
-          onUserDeleted(); // Trigger the event when user is deleted
+          onUserDeleted();
         } else {
           response.json().then((error) => {
             throw new Error(error.message);
@@ -39,7 +39,7 @@ export const DeleteUser = ({ username, token, onUserDeleted }) => {
   return (
     <Card className="my-3">
       <Card.Body>
-        <Card.Title className="kAuth-title">Deregister Account</Card.Title>
+        <Card.Title className="kAuth-title mb-3">Deregister Account</Card.Title>
         {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
         <Button
           className="delete-movie-button"
@@ -56,5 +56,5 @@ export const DeleteUser = ({ username, token, onUserDeleted }) => {
 DeleteUser.propTypes = {
   username: PropTypes.string.isRequired,
   token: PropTypes.string.isRequired,
-  onUserDeleted: PropTypes.func.isRequired, // New prop for handling user deletion
+  onUserDeleted: PropTypes.func.isRequired,
 };

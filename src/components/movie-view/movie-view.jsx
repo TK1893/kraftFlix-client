@@ -11,7 +11,7 @@ export const MovieView = ({ movies, addToFavorites }) => {
   const movie = movies.find((m) => m.ID === movieId);
 
   const handleAddToFavorites = () => {
-    addToFavorites(movie._id); // Übergeben Sie die _id des Films an die addToFavorites Funktion
+    addToFavorites(movie._id);
   };
 
   return (
@@ -45,17 +45,6 @@ export const MovieView = ({ movies, addToFavorites }) => {
           <Card.Text className="karteL-text">
             {movie.Featured ? 'Yes' : 'No'}
           </Card.Text>
-          {/* <Card.Text>
-            <Link to={`/`}>
-              <Button
-                variant="outline-custom"
-                className="custom-button me-3 my-3"
-                size="md"
-              >
-                Back
-              </Button>
-            </Link>{' '}
-          </Card.Text> */}
           <Button
             variant="outline"
             size="lg"
@@ -82,7 +71,7 @@ export const MovieView = ({ movies, addToFavorites }) => {
 MovieView.propTypes = {
   movies: PropTypes.arrayOf(
     PropTypes.shape({
-      _id: PropTypes.string.isRequired, // Die _id des Films als erforderliches Prop
+      _id: PropTypes.string.isRequired,
       Title: PropTypes.string.isRequired,
       Description: PropTypes.string,
       Director: PropTypes.shape({
@@ -99,5 +88,5 @@ MovieView.propTypes = {
       Actors: PropTypes.arrayOf(PropTypes.string),
     })
   ).isRequired,
-  addToFavorites: PropTypes.func.isRequired, // Funktion zum Hinzufügen zu Favoriten als erforderliches Prop
+  addToFavorites: PropTypes.func.isRequired,
 };

@@ -1,0 +1,32 @@
+$primary: #000;
+$secondary: antiquewhite;
+$tertiary: #ff00a2;
+$quatenary: rgb(83, 92, 223);
+
+$body-bg: antiquewhite;
+$pri-font: 'Abril Fatface', serif;
+$sec-font: 'Poppins', sans-serif;
+.karteS {
+  color: $primary;
+  transition: border-color box-shadow 0.3s ease; // Übergangseffekt für den Box-Schatten hinzufügen
+
+  &:hover {
+    // border-color: rgba($primary, 0.5);
+    box-shadow: 0 0 0.7rem rgba($primary, 0.8);
+    // border-color: rgba($tertiary, 0.8);
+    border: none;
+    // border: 1px solid rgba($tertiary, 0.8);
+  }
+
+  .karteS-title {
+    color: $primary;
+    font-family: $pri-font;
+    font-size: 1.2rem;
+  }
+
+  .karteS-text {
+    color: rgba($primary, 0.8);
+    font-family: $sec-font;
+    font-size: 0.7rem;
+  }
+}

@@ -7,22 +7,9 @@ $pri-font: 'Abril Fatface', serif;
 $sec-font: 'Poppins', sans-serif;
 @import '~bootstrap/scss/bootstrap.scss';
 
-.kraftflix-footer {
-  color: $secondary;
-  font-family: $pri-font;
-}
-
-// movieCard
-.karteS {
-  color: $primary;
-}
-.karteS-title {
-  font-family: $pri-font;
-  font-size: 1.2rem;
-}
-.karteS-text {
-  font-family: $sec-font;
-  font-size: 0.7rem;
+.card {
+  border: none;
+  box-shadow: 0 0 0.5rem rgba($primary, 0.5);
 }
 
 // MovieView
@@ -32,13 +19,11 @@ $sec-font: 'Poppins', sans-serif;
   background-color: $primary;
 }
 .karteL-film {
-  // color: $primary;
   color: $secondary;
   font-family: $pri-font;
   font-size: 3rem;
 }
 .karteL-jahr {
-  // color: $primary;
   color: $secondary;
   font-family: $pri-font;
   font-size: 1.2rem;
@@ -73,7 +58,6 @@ h6 {
 // Buttons
 .custom-button {
   font-family: $pri-font;
-  // font-weight: 400;
   color: $primary;
   border-color: $primary;
   border-width: 2px;
@@ -87,7 +71,6 @@ h6 {
 
 .favorite-button {
   font-family: $pri-font;
-  // font-weight: 400;
   color: $secondary;
   border-color: $primary;
   border-width: 2px;
@@ -113,15 +96,12 @@ h6 {
 }
 
 .delete-movie-button {
-  // text-align: left;
   font-size: 1rem;
   font-family: $pri-font;
   background-color: $primary;
-  // font-weight: 400;
   color: $secondary;
   border-color: $primary;
   border-width: 2px;
-  // border-width: 2px;
 
   &:hover {
     background-color: $tertiary;
